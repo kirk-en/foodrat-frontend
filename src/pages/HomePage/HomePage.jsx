@@ -1,24 +1,33 @@
-import axios from 'axios'
-import React from 'react'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const HomePage = () => {
-  
   // const findLocation = async () => {
   //   res = await axios
   // }
 
-// console.log(window.navigator);
+  // console.log(window.navigator);
 
-  const newClip = () => {navigator.geolocation.getCurrentPosition((position) => console.log(position));
+  const [location, setLocation] = useState({});
 
-  }
+  const getLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLocation(position.coords);
+      console.log(location);
+    });
+  };
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+  // we may want to put a variable inside the dependency array that reruns the use effect when the map moves
 
   return (
     <>
-    <div>HomePage</div>
-    <a onClick={newClip}>wooooo</a>
-  </>
-  )
-}
+      <div>HomePage</div>
+      <a onClick={() => {}}>wooooo</a>
+    </>
+  );
+};
 
-export default HomePage
+export default HomePage;
