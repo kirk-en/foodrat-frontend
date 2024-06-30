@@ -1,6 +1,14 @@
-
-
 .main-container {
   display: flex;
   justify-content: space-between;
+  &__left {
+    background-color: grey;
+    width: 30%;
+    height: 90vh;
+  }
+  &__right {
+    background-color: limegreen;
+    width: 70%;
+    height: 90vh;
+  }
 }
