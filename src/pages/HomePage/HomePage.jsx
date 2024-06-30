@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import UserMap from "../../components/UserMap/UserMap";
+import './HomePage.scss'
 
 const HomePage = () => {
   // const findLocation = async () => {
@@ -8,7 +10,7 @@ const HomePage = () => {
 
   // console.log(window.navigator);
 
-  const [location, setLocation] = useState({});
+  const [location, setLocation] = useState();
 
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -24,8 +26,11 @@ const HomePage = () => {
 
   return (
     <>
-      <div>HomePage</div>
-      <a onClick={() => {}}>wooooo</a>
+      <a onClick={() => {}}>The header can go here later</a>
+      <main className="main-container">
+        <p>This will be a list of restaurants</p>
+        {!location ? <p>FoodRat needs your location to load map</p> : <UserMap location={location}/>}
+      </main>
     </>
   );
 };
