@@ -1,13 +1,19 @@
 import "./StoreCard.scss";
 import grade from "../../assets/letter-grades/grade-a.svg";
+import { Link } from "react-router-dom";
 
 const StoreCard = () => {
   return (
     <>
       <article className="card">
         <div className="card__details">
-          <h2 className="card__store-name">PETE'S CANDY STORE</h2>
-          <p>670 Lorimer St. Brooklyn, NY 11211</p>
+          <Link className="card__link">
+            <h2 className="card__store-name">TACO BELL</h2>
+            <p className="card__store-address">
+              670 Lorimer St. Brooklyn, NY 11211
+            </p>
+            <p className="card__store-alerts">Alerts: 🐀 🪳</p>
+          </Link>
         </div>
         <div className="card__grade">
           <img

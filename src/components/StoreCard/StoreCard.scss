@@ -1,20 +1,52 @@
+@use "../../styles/partials/variables.scss" as *;
+
 .card {
   display: flex;
   justify-content: space-between;
-  gap: .75rem;
+  align-items: center;
+  gap: 0.75rem;
   padding-bottom: 1rem;
-  
-  
-  
-  
-  &__store-name {
-    font-size: 1.2rem;
+  background-color: none;
+  transition: background-color 2s;
+  border-radius: 0.75rem;
+  &:hover {
+    background-color: #fdf8e3;
+  }
+
+  &__link {
+    text-decoration: none;
+    &:visited {
+      color: $rat-black;
+    }
+    &:hover {
+      color: $rat-hover;
+    }
+  }
+  &__details {
+
+  }
+
+  &__store {
+    &-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    &-address {
+      font-weight: 300;
+      font-size: 1rem;
+    }
+    &-alerts {
+      font-weight: 700;
+      color: $rat-alert;
+    }
   }
   &__grade {
     background-color: white;
-    padding: .5rem 0.25rem;
+    padding: 0.5rem 0.25rem;
+    border-radius: 0.75rem;
+    max-height: 4rem;
     &-img {
-    width: 3rem;
+      height: 3rem;
     }
   }
 }
