@@ -2,12 +2,15 @@
   display: flex;
   justify-content: space-between;
   &__left {
-    background-color: grey;
+    background-color: rgb(220, 220, 220);
     width: 30%;
     height: 90vh;
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
   }
   &__right {
-    background-color: limegreen;
+    background-image: url("../../assets/map-placeholder.jpg");
     width: 70%;
     height: 90vh;
   }

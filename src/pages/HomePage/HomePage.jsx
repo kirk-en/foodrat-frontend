@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import UserMap from "../../components/UserMap/UserMap";
+import StoreList from "../../components/StoreList/StoreList";
 import "./HomePage.scss";
 
 const HomePage = () => {
@@ -13,7 +14,7 @@ const HomePage = () => {
   const [location, setLocation] = useState();
 
   const getLocation = () => {
-      navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.getCurrentPosition((position) => {
       setLocation(position.coords);
     });
   };
@@ -29,14 +30,19 @@ const HomePage = () => {
     <>
       <a onClick={() => {}}>The header can go here later</a>
       <main className="main-container">
-        <div className="main-container__left">
-          <p>This will be a list of restaurants</p>
-        </div>
+        <aside className="main-container__left">
+          <StoreList />
+        </aside>
         <div className="main-container__right">
           {!location ? (
             <p>FoodRat needs your location to load map</p>
           ) : (
-            <UserMap location={location} />
+            <p>
+              <b style={{ backgroundColor: "red", fontSize: "3rem" }}>
+                Map API Disabled 🗺
+              </b>
+            </p>
+            // <UserMap location={location} />
           )}
         </div>
       </main>

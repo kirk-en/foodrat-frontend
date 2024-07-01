@@ -1,18 +1,20 @@
 @font-face {
-  font-family: kirk-font;
-  src: url(./assets/fonts/k-font-regular.otf) format('opentype');
-  font-style: normal;
+  font-family: k-font;
+  src: url(./assets/fonts/k-font-400-regular.otf) format('opentype');
   font-weight: 400;
 }
-// @font-face {
-//   font-family: kirk-font;
-//   src: url(../../assets/fonts/k-font-medium.woff) format('woff');
-//   font-style: normal;
-//   font-weight: 600;
-// }
-// @font-face {
-//   font-family: kirk-font;
-//   src: url(../../assets/fonts/k-font-bold.woff) format('woff');
-//   font-style: normal;
-//   font-weight: 700;
-// }
+@font-face {
+  font-family: k-font;
+  src: url(./assets/fonts/k-font-600-medium.otf) format('opentype');
+  font-weight: 600;
+}
+@font-face {
+  font-family: k-font;
+  src: url(./assets/fonts/k-font-700-bold.otf) format('opentype');
+  font-weight: 700;
+}
+@font-face {
+  font-family: k-font;
+  src: url(./assets/fonts/k-font-300-light.otf) format('opentype');
+  font-weight: 300;
+}
