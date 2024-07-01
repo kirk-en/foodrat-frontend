@@ -1,0 +1,10 @@
+@use "../../styles/partials/variables.scss" as *;
+
+.footer {
+  display: flex;
+  justify-content: center;
+  background-color: $rat-light;
+  &__logo {
+    width: 7rem;
+  }
+}

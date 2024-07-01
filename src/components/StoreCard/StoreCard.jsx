@@ -7,7 +7,7 @@ const StoreCard = () => {
     <>
       <article className="card">
         <div className="card__details">
-          <Link className="card__link">
+          <Link className="card__link" to={'/store/storeID'}>
             <h2 className="card__store-name">TACO BELL</h2>
             <p className="card__store-address">
               670 Lorimer St. Brooklyn, NY 11211
