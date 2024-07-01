@@ -1,0 +1,23 @@
+@use "../../styles/partials/typography.scss" as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  &__left,
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+  &__menu {
+    list-style: none;
+    &-item {
+      display: inline;
+      padding: 0 .5rem;
+    }
+  }
+  &__profile-img {
+    width: 3rem;
+    border-radius: 50%;
+  }
+}

@@ -1,0 +1,17 @@
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  &__left {
+    background-color: #FAF8F0;
+    width: 30%;
+    height: fill;
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  &__right {
+    background-image: url("../../assets/map-placeholder.jpg");
+    width: 70%;
+    height: 90vh;
+  }
+}

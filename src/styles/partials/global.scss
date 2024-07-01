@@ -1,5 +1,9 @@
-@use './mixins.scss';
+@use './mixins.scss' as *;
 @use './resets.scss';
 @use './typography.scss';
-@use './variables.scss';
+@use './variables.scss' as *;
 
+body {
+  font-family: k-font;
+  color: $rat-black;
+}
