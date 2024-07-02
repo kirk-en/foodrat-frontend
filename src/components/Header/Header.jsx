@@ -1,5 +1,5 @@
 import "./Header.scss";
-import foodRatLogo from "../../assets/concept-art/foodrat-mascot.jpg";
+import foodRatLogo from "../../assets/concept-art/foodrat-mascot-alpha.png";
 import profileImage from "../../assets/default-profile.jpg";
 
 const Header = () => {
