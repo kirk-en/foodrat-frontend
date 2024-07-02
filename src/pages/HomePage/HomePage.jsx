@@ -36,13 +36,13 @@ const HomePage = () => {
             <p>FoodRat needs your location to load map</p>
           ) : (
             // section with alert to disbale API when working with other sections
-            <p>
-              <b style={{ backgroundColor: "red", fontSize: "3rem" }}>
-                Map API Currently Disabled 🗺
-              </b>
-            </p>
+            // <p>
+            //   <b style={{ backgroundColor: "red", fontSize: "3rem" }}>
+            //     Map API Currently Disabled 🗺
+            //   </b>
+            // </p>
             // Enable to call API and load map 👇
-            // <UserMap location={location} />
+            <UserMap location={location} />
           )}
         </section>
       </main>

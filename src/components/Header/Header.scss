@@ -3,11 +3,15 @@
 .header {
   display: flex;
   justify-content: space-between;
-
+&__logo {
+  height: 2.5rem;
+}
   &__left,
   &__right {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    // gap: 1rem;
+    padding: .5rem;
   }
   &__menu {
     list-style: none;
@@ -17,7 +21,7 @@
     }
   }
   &__profile-img {
-    width: 3rem;
+    width: 2.5rem;
     border-radius: 50%;
   }
 }

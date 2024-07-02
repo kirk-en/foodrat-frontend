@@ -1,11 +1,38 @@
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import "./UserMap.scss";
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+const debouncer = (func, delay, dependencies) => {
+  const callback = useRef();
+
+  useEffect(() => {
+    callback.current = func;
+  }, [func]);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      callback.current();
+    }, delay);
+
+    return () => clearTimeout(handler);
+  }, [...dependencies, delay]);
+};
 
 const UserMap = ({ location }) => {
+  const [bounds, setBounds] = useState({});
+
   const handleCameraChange = useCallback((event) => {
-    console.log("Updated Map Center: ", event.detail.center);
+    setBounds(event.detail.bounds);
+    console.log(bounds);
   });
+
+  debouncer(
+    () => {
+      console.log("GET request sent to NYC OpenData");
+    },
+    1500,
+    [bounds]
+  );
 
   return (
     <>
