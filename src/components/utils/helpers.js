@@ -22,11 +22,14 @@ export const groupByStore = (arr) => {
   return outputArr;
 };
 
-// Add the grade to top level of store object and account for stores that do not have a grade prop in most recent inspection.
-// Not sure why some cited violation are missing the grade property, noted inconsistency in the data set.
+// Add the grade to top level of store object. Accounts for stores that do not have a grade prop in most recent inspection or have been shut down by health dept.
 const getLatestGrade = (storeArr) => {
   storeArr.forEach((store) => {
     for (let i = 0; i < store.violations.length; i++) {
+      if (/Establishment Closed by DOHMH/.test(store.violations[i].action)) {
+        store.grade = "CLOSED";
+        break;
+      }
       if (store.violations[i].inspection_date === "1900-01-01T00:00:00.000") {
         store.grade = "N";
         break;

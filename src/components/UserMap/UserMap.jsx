@@ -12,6 +12,7 @@ import markerImageB from "../../assets/letter-grades/grade-b.svg";
 import markerImageC from "../../assets/letter-grades/grade-c.svg";
 import markerImagePending from "../../assets/letter-grades/grade-pending.svg";
 import markerImageTBD from "../../assets/letter-grades/grade-tbd.svg";
+import markerImageClosed from "../../assets/letter-grades/grade-closed.svg";
 import { groupByStore } from "../utils/helpers";
 
 // The debouncer will prevent an API request being sent to NYC Open Data
@@ -45,6 +46,7 @@ const UserMap = ({ location }) => {
     C: markerImageC,
     Z: markerImagePending,
     N: markerImageTBD,
+    CLOSED: markerImageClosed,
   };
   const [bounds, setBounds] = useState(initBounds);
   const [stores, setStores] = useState([]);
