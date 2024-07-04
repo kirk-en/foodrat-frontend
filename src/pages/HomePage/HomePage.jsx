@@ -37,7 +37,7 @@ const HomePage = () => {
       <Header />
       <main className="main-container">
         <aside className="main-container__left">
-          <StoreList />
+          <StoreList stores={stores} />
         </aside>
         <section className="main-container__right">
           {!location ? (
