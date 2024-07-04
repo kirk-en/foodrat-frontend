@@ -10,6 +10,8 @@ import axios from "axios";
 import markerImageA from "../../assets/letter-grades/grade-a.svg";
 import markerImageB from "../../assets/letter-grades/grade-b.svg";
 import markerImageC from "../../assets/letter-grades/grade-c.svg";
+import markerImagePending from "../../assets/letter-grades/grade-pending.svg";
+import markerImageTBD from "../../assets/letter-grades/grade-tbd.svg";
 import { groupByStore } from "../utils/helpers";
 
 // The debouncer will prevent an API request being sent to NYC Open Data
@@ -41,6 +43,8 @@ const UserMap = ({ location }) => {
     A: markerImageA,
     B: markerImageB,
     C: markerImageC,
+    Z: markerImagePending,
+    N: markerImageTBD,
   };
   const [bounds, setBounds] = useState(initBounds);
   const [stores, setStores] = useState([]);
@@ -84,24 +88,27 @@ const UserMap = ({ location }) => {
           onCameraChanged={handleCameraChange}
         >
           {stores.map((store) => {
-            return (
-              <AdvancedMarker
-                key={store.violations[0].camis}
-                title={store.name}
-                position={{
-                  lat: Number(store.coords.latitude),
-                  lng: Number(store.coords.longitude),
-                }}
-                onClick={() => console.log("marker clicked")}
-              >
-                <img
-                  src={gradeImages[store.violations[0].grade]}
-                  width={25}
-                  height={25}
-                />
-                <span>{store.name}</span>
-              </AdvancedMarker>
-            );
+            if (store.name !== "undefined") {
+              return (
+                <AdvancedMarker
+                  key={store.violations[0].camis}
+                  title={store.name}
+                  position={{
+                    lat: Number(store.coords.latitude),
+                    lng: Number(store.coords.longitude),
+                  }}
+                  onClick={() => console.log("marker clicked")}
+                >
+                  <img
+                    src={gradeImages[store.grade]}
+                    width={25}
+                    height={25}
+                    className="map__grade-marker"
+                  />
+                  <span>{store.name}</span>
+                </AdvancedMarker>
+              );
+            } else return;
           })}
           {/* <AdvancedMarker
             title="Store 1"
