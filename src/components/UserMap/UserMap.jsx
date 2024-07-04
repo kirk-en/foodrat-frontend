@@ -13,27 +13,9 @@ import markerImageC from "../../assets/letter-grades/grade-c.svg";
 import markerImagePending from "../../assets/letter-grades/grade-pending.svg";
 import markerImageTBD from "../../assets/letter-grades/grade-tbd.svg";
 import markerImageClosed from "../../assets/letter-grades/grade-closed.svg";
-import { groupByStore } from "../utils/helpers";
+import { groupByStore, debouncer } from "../utils/helpers";
 
-// The debouncer will prevent an API request being sent to NYC Open Data
-// until the map has stopped moving for 1 second.
-const debouncer = (func, delay, dependencies) => {
-  const callback = useRef();
-
-  useEffect(() => {
-    callback.current = func;
-  }, [func]);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      callback.current();
-    }, delay);
-
-    return () => clearTimeout(handler);
-  }, [...dependencies, delay]);
-};
-
-const UserMap = ({ location }) => {
+const UserMap = ({ location, stores, setStores }) => {
   const initBounds = {
     north: location.latitude + 0.002674456117198,
     south: location.latitude - 0.002674456117198,
@@ -49,7 +31,6 @@ const UserMap = ({ location }) => {
     CLOSED: markerImageClosed,
   };
   const [bounds, setBounds] = useState(initBounds);
-  const [stores, setStores] = useState([]);
 
   const handleCameraChange = useCallback((event) => {
     setBounds(event.detail.bounds);
@@ -99,7 +80,17 @@ const UserMap = ({ location }) => {
                     lat: Number(store.coords.latitude),
                     lng: Number(store.coords.longitude),
                   }}
-                  onClick={() => console.log("marker clicked")}
+                  onClick={() =>
+                    console.log(
+                      `lat - ${store.coords.latitude} | long - ${
+                        store.coords.longitude
+                      } | ${store.name} - ${store.grade} Grade, ${
+                        store.violations[0].score
+                          ? store.violations[0].score
+                          : "N/A"
+                      } points`
+                    )
+                  }
                 >
                   <img
                     src={gradeImages[store.grade]}

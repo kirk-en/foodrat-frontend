@@ -1,4 +1,5 @@
 import { testArr } from "./testArr.js";
+import { useEffect, useRef } from "react";
 
 // Data should be received with violations sorted from newest to oldest
 export const groupByStore = (arr) => {
@@ -40,6 +41,36 @@ const getLatestGrade = (storeArr) => {
       }
     }
   });
+};
+
+export const getLocation = (setStateFunc, defaultLoc) => {
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      console.log("user position:", position);
+      setStateFunc(position.coords);
+    },
+    () => {
+      setStateFunc(defaultLoc);
+    }
+  );
+};
+
+// The debouncer will prevent an API request being sent to NYC Open Data
+// until the map has stopped moving for 1 second.
+export const debouncer = (func, delay, dependencies) => {
+  const callback = useRef();
+
+  useEffect(() => {
+    callback.current = func;
+  }, [func]);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      callback.current();
+    }, delay);
+
+    return () => clearTimeout(handler);
+  }, [...dependencies, delay]);
 };
 
 // groupByStore(testArr);
