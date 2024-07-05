@@ -3,16 +3,17 @@
   justify-content: space-between;
   height: 87vh;
   &__left {
-    background-color: #FAF8F0;
+    background-color: #faf8f0;
     width: 30%;
     height: fill;
     padding: 1rem 0.5rem;
     display: flex;
     flex-direction: column;
+    overflow: scroll;
+    overflow-x: hidden;
   }
   &__right {
     background-image: url("../../assets/map-placeholder.jpg");
     width: 70%;
-    
   }
 }

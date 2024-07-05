@@ -5,6 +5,7 @@ import UserMap from "../../components/UserMap/UserMap";
 import StoreList from "../../components/StoreList/StoreList";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
+import { getLocation } from "../../components/utils/helpers";
 
 import "./HomePage.scss";
 
@@ -21,21 +22,11 @@ const defaultLocation = {
 
 const HomePage = () => {
   const [location, setLocation] = useState();
+  const [stores, setStores] = useState([]);
 
-  const getLocation = () => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        console.log("position:", position);
-        setLocation(position.coords);
-      },
-      () => {
-        setLocation(defaultLocation);
-      }
-    );
-  };
-
+  // ask for user location on page load
   useEffect(() => {
-    getLocation();
+    getLocation(setLocation, defaultLocation);
   }, []);
   // we may want to put a variable inside the dependency array that reruns the use effect when the map moves
   useEffect(() => {
@@ -46,7 +37,7 @@ const HomePage = () => {
       <Header />
       <main className="main-container">
         <aside className="main-container__left">
-          <StoreList />
+          <StoreList stores={stores} />
         </aside>
         <section className="main-container__right">
           {!location ? (
@@ -59,7 +50,12 @@ const HomePage = () => {
             //   </b>
             // </p>
             // 🟠 Enable to call API and load map 👇
-            <UserMap location={location} />
+            // Noting here that passing down the setStores state setting function could hurt reusability of <UserMap> component
+            <UserMap
+              location={location}
+              stores={stores}
+              setStores={setStores}
+            />
           )}
         </section>
       </main>
