@@ -1,7 +1,21 @@
 .map {
   height: 100%;
-
-  &__grade-marker {
+  &__store {
+    display: flex;
     background-color: white;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    &:hover {
+      background-color: #7294dc;
+      color: white;
+    }
+  }
+  &__grade {
+    border-radius: 10%;
+  }
+  &__business-name {
+    font-weight: 300;
   }
 }

@@ -6,10 +6,9 @@ const StoreList = ({ stores }) => {
     <>
       <h1 className="store-list__title">Nearby Restaurants:</h1>
       {stores.map((store) => {
-        console.log(store.name);
+        // console.log(store.name);
+        return <StoreCard store={store} />;
       })}
-      <StoreCard />
-      <StoreCard />
     </>
   );
 };

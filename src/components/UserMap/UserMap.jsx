@@ -92,13 +92,15 @@ const UserMap = ({ location, stores, setStores }) => {
                     )
                   }
                 >
-                  <img
-                    src={gradeImages[store.grade]}
-                    width={25}
-                    height={25}
-                    className="map__grade-marker"
-                  />
-                  <span>{store.name}</span>
+                  <div className="map__store">
+                    <img
+                      src={gradeImages[store.grade]}
+                      width={25}
+                      height={25}
+                      className="map__grade"
+                    />
+                    <span className="map__business-name">{store.name}</span>
+                  </div>
                 </AdvancedMarker>
               );
             } else return;
