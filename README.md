@@ -1,5 +1,4 @@
-# FoodRat ![foodrat mascot](https://github.com/kirk-en/foodrat-frontend/blob/develop/src/assets/concept-art/foodrat-mascot.jpg)bngm
-
+# FoodRat ![foodrat mascot](https://github.com/kirk-en/foodrat-frontend/blob/develop/src/assets/concept-art/foodrat-mascot.jpg)
 
 ## Overview
 
@@ -29,7 +28,6 @@ FoodRat is designed for New Yorkers and tourists who want to ensure they dine at
 
 - Google Maps JavaScript API
 - NYC Open Data API.
-
 
 ### Endpoints
 
