@@ -1,6 +1,6 @@
 import "./Header.scss";
 import foodRatLogo from "../../assets/concept-art/foodrat-mascot-alpha.png";
-import wordMark from '../../assets/foodrat-wordmark.png'
+import wordMark from "../../assets/foodrat-wordmark.png";
 import profileImage from "../../assets/default-profile.jpg";
 
 const Header = () => {
@@ -20,10 +20,16 @@ const Header = () => {
       </div>
       <div className="header__right">
         <ul>
-          <li className="header__menu-item">Swag Shop</li>
           <li className="header__menu-item">Home</li>
+          <li className="header__menu-item">About</li>
+          <li className="header__menu-item">RatZone</li>
+          <li className="header__menu-item">Swag Shop</li>
         </ul>
-        <img className="header__profile-img" src={profileImage} alt="profile image for user" />
+        <img
+          className="header__profile-img"
+          src={profileImage}
+          alt="profile image for user"
+        />
       </div>
     </header>
   );

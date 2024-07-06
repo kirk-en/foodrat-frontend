@@ -11,8 +11,8 @@ import "./HomePage.scss";
 
 // set this location if the user declines to use location sharing
 const defaultLocation = {
-  latitude: 40.690454399970044,
-  longitude: -74.04516135490462,
+  latitude: 40.720720183542,
+  longitude: -73.988888639603,
   altitude: null,
   accuracy: 40,
   altitudeAccuracy: null,

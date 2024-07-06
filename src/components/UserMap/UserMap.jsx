@@ -35,7 +35,7 @@ const UserMap = ({ location, stores, setStores }) => {
 
   const handleCameraChange = useCallback((event) => {
     setBounds(event.detail.bounds);
-    console.log("bounds state:", bounds);
+    // console.log("bounds state:", bounds);
   });
 
   debouncer(
@@ -105,7 +105,7 @@ const UserMap = ({ location, stores, setStores }) => {
                     />
                     <span
                       className="map__business-name"
-                      style={{ width: store.markerWidth + 15 }}
+                      style={{ width: store.markerWidth + 17 }}
                     >
                       {store.name.length > 25
                         ? store.name.substring(0, 20) + "..."
