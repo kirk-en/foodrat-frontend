@@ -103,7 +103,14 @@ const UserMap = ({ location, stores, setStores }) => {
                       height={25}
                       className="map__grade"
                     />
-                    <span className="map__business-name">{store.name}</span>
+                    <span
+                      className="map__business-name"
+                      style={{ width: store.markerWidth }}
+                    >
+                      {store.name.length > 25
+                        ? store.name.substring(0, 20) + "..."
+                        : store.name}
+                    </span>
                   </div>
                 </AdvancedMarker>
               );

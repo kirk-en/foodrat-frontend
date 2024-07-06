@@ -16,16 +16,18 @@ export const groupByStore = (arr) => {
       latitude: outputObj[key][0]?.latitude,
       longitude: outputObj[key][0]?.longitude,
     },
+    markerWidth: "1rem",
     violations: outputObj[key],
   }));
   getLatestGrade(outputArr);
+  findNameWidth(outputArr);
   console.log(outputArr);
   return outputArr;
 };
 
 // Add the grade to top level of store object. Accounts for stores that do not have a grade prop in most recent inspection or have been shut down by health dept.
-const getLatestGrade = (storeArr) => {
-  storeArr.forEach((store) => {
+const getLatestGrade = (storesArr) => {
+  storesArr.forEach((store) => {
     for (let i = 0; i < store.violations.length; i++) {
       if (/Establishment Closed by DOHMH/.test(store.violations[i].action)) {
         store.grade = "CLOSED";
@@ -41,6 +43,27 @@ const getLatestGrade = (storeArr) => {
       }
     }
   });
+};
+
+// calculate longest word in store name, used for dynamic map marker width.
+const findNameWidth = (storesArr) => {
+  storesArr.forEach((store) => {
+    if (store.name) {
+      let maxWidth = 0;
+      store.name.split(" ").forEach((word) => {
+        const width = getWordWidth(word, "8px Arial");
+        if (width > maxWidth) maxWidth = width;
+      });
+      store.markerWidth = maxWidth;
+    }
+  });
+};
+
+const getWordWidth = (text, font) => {
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+  context.font = font;
+  return context.measureText(text).width;
 };
 
 export const getLocation = (setStateFunc, defaultLoc) => {
@@ -88,7 +111,7 @@ export const alertCheck = (storeObj) => {
         ratFlag = true;
       if (violation.violation_code === "04M") roachFlag = true;
     });
-  return `${ratFlag ? "🐀" : ""} ${roachFlag ? "🪳" : ""}`;
+  return `${ratFlag ? "🐀" : ""}${roachFlag ? "🪳" : ""}`;
 };
 
 // groupByStore(testArr);

@@ -33,7 +33,7 @@ const StoreCard = ({ store }) => {
               {`${store.violations[0].building} ${store.violations[0].street}, ${store.violations[0].boro}, NY ${store.violations[0].zipcode}`}
             </p>
             <p className="card__store-alerts">
-              {alerts === " " ? "" : `Alerts: ${alerts}`}
+              {alerts === "" ? "" : `Alerts: ${alerts}`}
             </p>
           </Link>
         </div>

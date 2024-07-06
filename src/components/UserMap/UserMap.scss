@@ -2,9 +2,10 @@
   height: 100%;
   &__store {
     display: flex;
+    // flex-direction: column;
     background-color: rgba(255, 255, 255, 0.6);
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.25rem;
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
     &:hover {
@@ -17,5 +18,10 @@
   }
   &__business-name {
     font-weight: 300;
+    // font-size: 0.7rem;
+    // width: 4rem;
+    // text-overflow: ellipsis;
+    // white-space: pre-wrap;
+    // word-wrap: normal;
   }
 }
