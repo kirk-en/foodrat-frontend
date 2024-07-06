@@ -3,6 +3,7 @@ import {
   Map,
   useMap,
   AdvancedMarker,
+  CollisionBehavior,
 } from "@vis.gl/react-google-maps";
 import "./UserMap.scss";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -80,6 +81,9 @@ const UserMap = ({ location, stores, setStores }) => {
                     lat: Number(store.coords.latitude),
                     lng: Number(store.coords.longitude),
                   }}
+                  collisionBehavior={
+                    CollisionBehavior.OPTIONAL_AND_HIDES_LOWER_PRIORITY
+                  }
                   onClick={() =>
                     console.log(
                       `lat - ${store.coords.latitude} | long - ${
