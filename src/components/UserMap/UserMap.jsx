@@ -61,7 +61,7 @@ const UserMap = ({ location, stores, setStores }) => {
         // could use this onload to grab data from NYC database
       >
         <Map
-          mapId="foodrat"
+          mapId="9061d7edc09b5a47"
           style={{ width: "100%", height: "100%" }}
           className="map"
           defaultCenter={{ lat: location.latitude, lng: location.longitude }}
