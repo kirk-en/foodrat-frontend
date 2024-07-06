@@ -3,21 +3,27 @@
 .header {
   display: flex;
   justify-content: space-between;
-&__logo {
-  height: 2.5rem;
-}
+  height: 3.5rem;
+  border-bottom: solid 3px rgb(241, 241, 241);
+
+  &__logo {
+    height: 2.5rem;
+  }
   &__left,
   &__right {
     display: flex;
     align-items: flex-end;
     // gap: 1rem;
-    padding: .5rem;
+    padding: 0.5rem;
   }
   &__menu {
     list-style: none;
     &-item {
       display: inline;
-      padding: 0 .5rem;
+      padding: 0 0.5rem;
+      &:hover {
+        border-bottom: solid 3px rgb(192, 192, 192);
+      }
     }
   }
   &__profile-img {

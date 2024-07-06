@@ -3,6 +3,7 @@ import {
   Map,
   useMap,
   AdvancedMarker,
+  CollisionBehavior,
 } from "@vis.gl/react-google-maps";
 import "./UserMap.scss";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -34,7 +35,7 @@ const UserMap = ({ location, stores, setStores }) => {
 
   const handleCameraChange = useCallback((event) => {
     setBounds(event.detail.bounds);
-    console.log("bounds state:", bounds);
+    // console.log("bounds state:", bounds);
   });
 
   debouncer(
@@ -61,7 +62,7 @@ const UserMap = ({ location, stores, setStores }) => {
         // could use this onload to grab data from NYC database
       >
         <Map
-          mapId="foodrat"
+          mapId="9061d7edc09b5a47"
           style={{ width: "100%", height: "100%" }}
           className="map"
           defaultCenter={{ lat: location.latitude, lng: location.longitude }}
@@ -80,6 +81,9 @@ const UserMap = ({ location, stores, setStores }) => {
                     lat: Number(store.coords.latitude),
                     lng: Number(store.coords.longitude),
                   }}
+                  collisionBehavior={
+                    CollisionBehavior.OPTIONAL_AND_HIDES_LOWER_PRIORITY
+                  }
                   onClick={() =>
                     console.log(
                       `lat - ${store.coords.latitude} | long - ${
@@ -99,7 +103,14 @@ const UserMap = ({ location, stores, setStores }) => {
                       height={25}
                       className="map__grade"
                     />
-                    <span className="map__business-name">{store.name}</span>
+                    <span
+                      className="map__business-name"
+                      style={{ width: store.markerWidth + 17 }}
+                    >
+                      {store.name.length > 25
+                        ? store.name.substring(0, 20) + "..."
+                        : store.name}
+                    </span>
                   </div>
                 </AdvancedMarker>
               );
