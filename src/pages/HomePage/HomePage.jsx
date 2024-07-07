@@ -23,6 +23,7 @@ const defaultLocation = {
 const HomePage = () => {
   const [location, setLocation] = useState();
   const [stores, setStores] = useState([]);
+  const [search, setSearch] = useState("");
 
   // ask for user location on page load
   useEffect(() => {
@@ -34,7 +35,7 @@ const HomePage = () => {
   }, [location]);
   return (
     <>
-      <Header />
+      <Header search={search} setSearch={setSearch} />
       <main className="main-container">
         <aside className="main-container__left">
           <StoreList stores={stores} />
