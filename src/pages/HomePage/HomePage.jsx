@@ -35,7 +35,7 @@ const HomePage = () => {
   }, [location]);
   return (
     <>
-      <Header search={search} setSearch={setSearch} />
+      <Header search={search} setSearch={setSearch} setStores={setStores} />
       <main className="main-container">
         <aside className="main-container__left">
           <StoreList stores={stores} />
