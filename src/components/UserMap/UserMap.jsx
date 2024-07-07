@@ -42,7 +42,13 @@ const UserMap = ({ location, stores, setStores }) => {
     async () => {
       console.log("GET request sent to NYC OpenData");
       const { data } = await axios.get(
-        `https://data.cityofnewyork.us/resource/43nn-pn8j.json?$WHERE=latitude < ${bounds.north} AND latitude > ${bounds.south} AND longitude < ${bounds.east} AND longitude > ${bounds.west}`
+        `https://data.cityofnewyork.us/resource/43nn-pn8j.json?$WHERE=latitude < ${
+          bounds.north
+        } AND latitude > ${bounds.south} AND longitude < ${
+          bounds.east
+        } AND longitude > ${bounds.west}&$$app_token=${
+          import.meta.env.VITE_NYC_APP_TOKEN
+        }`
       );
       // Sort violations from newest to oldest
       const sortedData = data.sort((a, b) => {
@@ -77,10 +83,20 @@ const UserMap = ({ location, stores, setStores }) => {
                 <AdvancedMarker
                   key={store.violations[0].camis}
                   title={store.name}
-                  position={{
-                    lat: Number(store.coords.latitude),
-                    lng: Number(store.coords.longitude),
-                  }}
+                  position={
+                    store.coords.latitude &&
+                    store.coords.longitude &&
+                    !isNaN(Number(store.coords.latitude)) &&
+                    !isNaN(Number(store.coords.longitude))
+                      ? {
+                          lat: Number(store.coords.latitude),
+                          lng: Number(store.coords.longitude),
+                        }
+                      : {
+                          lat: 0,
+                          lng: 0,
+                        }
+                  }
                   collisionBehavior={
                     CollisionBehavior.OPTIONAL_AND_HIDES_LOWER_PRIORITY
                   }

@@ -9,7 +9,7 @@
   background-color: none;
   transition: background-color 1s;
   // border-radius: 0.75rem;
-  border-bottom: solid $rat-hover 1px;
+  border-bottom: solid rgb(192, 192, 192) 1px;
   &:hover {
     background-color: #fdf8e3;
   }
