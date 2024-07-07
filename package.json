@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mui/material": "^5.16.0",
     "@vis.gl/react-google-maps": "^1.1.0",
     "axios": "^1.7.2",
+    "install": "^0.13.0",
+    "npm": "^10.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.24.0",
