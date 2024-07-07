@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import { useParams } from "react-router-dom";
 import UserMap from "../../components/UserMap/UserMap";
 import StoreList from "../../components/StoreList/StoreList";
+import StoreDetails from "../../components/StoreDetails/StoreDetails";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { getLocation } from "../../components/utils/helpers";
@@ -24,7 +25,7 @@ const HomePage = () => {
   const [location, setLocation] = useState();
   const [stores, setStores] = useState([]);
   const [search, setSearch] = useState("");
-
+  const { storeId } = useParams();
   // ask for user location on page load
   useEffect(() => {
     getLocation(setLocation, defaultLocation);
@@ -36,6 +37,7 @@ const HomePage = () => {
   return (
     <>
       <Header search={search} setSearch={setSearch} setStores={setStores} />
+      {storeId && <StoreDetails />}
       <main className="main-container">
         <aside className="main-container__left">
           <StoreList stores={stores} />

@@ -15,6 +15,7 @@ import markerImagePending from "../../assets/letter-grades/grade-pending.svg";
 import markerImageTBD from "../../assets/letter-grades/grade-tbd.svg";
 import markerImageClosed from "../../assets/letter-grades/grade-closed.svg";
 import { groupByStore, debouncer } from "../utils/helpers";
+import { useParams } from "react-router-dom";
 
 const UserMap = ({ location, stores, setStores }) => {
   const initBounds = {
