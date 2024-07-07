@@ -4,6 +4,7 @@ import wordMark from "../../assets/foodrat-wordmark.png";
 import profileImage from "../../assets/default-profile.jpg";
 import axios from "axios";
 import { groupByStore } from "../utils/helpers";
+import { Link } from "react-router-dom";
 
 const Header = ({ search, setSearch, setStores }) => {
   const storeSearch = async () => {
@@ -24,11 +25,13 @@ const Header = ({ search, setSearch, setStores }) => {
   return (
     <header className="header">
       <div className="header__left">
-        <img
-          className="header__logo"
-          src={wordMark}
-          alt="a cute rat chewing on a letter C grade restaurant sign"
-        />
+        <Link to={"/"}>
+          <img
+            className="header__logo"
+            src={wordMark}
+            alt="a cute rat chewing on a letter C grade restaurant sign"
+          />
+        </Link>
       </div>
 
       <div className="header__right">
