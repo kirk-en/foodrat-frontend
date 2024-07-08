@@ -1,9 +1,11 @@
+@use "../../styles/partials/variables.scss" as *;
+
 .main-container {
   display: flex;
   justify-content: space-between;
   height: calc(100vh - (7rem + 3.5rem));
   &__left {
-    background-color: #faf8f0;
+    background-color: $rat-light;
     width: 30%;
     height: fill;
     padding: 1rem 0.5rem;

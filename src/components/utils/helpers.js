@@ -45,6 +45,23 @@ const getLatestGrade = (storesArr) => {
   });
 };
 
+export const getStoreById = (storesArr, id) => {
+  if (storesArr.length === 0) return;
+  const [matchedStore] = storesArr.filter(
+    (store) => store.violations[0].camis == id
+  );
+  if (!matchedStore) return;
+  console.log("matched", matchedStore);
+  const dateSortedObj = [];
+  matchedStore.violations.forEach((violation) => {
+    dateSortedObj[violation.inspection_date]
+      ? dateSortedObj[violation.inspection_date].push(violation)
+      : (dateSortedObj[violation.inspection_date] = [violation]);
+  });
+  matchedStore.violationsByDate = dateSortedObj;
+  return matchedStore;
+};
+
 // calculate longest word in store name, used for dynamic map marker width.
 const findNameWidth = (storesArr) => {
   storesArr.forEach((store) => {
@@ -113,5 +130,3 @@ export const alertCheck = (storeObj) => {
     });
   return `${ratFlag ? "🐀" : ""}${roachFlag ? "🪳" : ""}`;
 };
-
-// groupByStore(testArr);

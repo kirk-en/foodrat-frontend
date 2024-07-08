@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import { useParams } from "react-router-dom";
 import UserMap from "../../components/UserMap/UserMap";
 import StoreList from "../../components/StoreList/StoreList";
+import StoreDetails from "../../components/StoreDetails/StoreDetails";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
-import { getLocation } from "../../components/utils/helpers";
+import { getLocation, getStoreById } from "../../components/utils/helpers";
 
 import "./HomePage.scss";
 
@@ -24,19 +25,21 @@ const HomePage = () => {
   const [location, setLocation] = useState();
   const [stores, setStores] = useState([]);
   const [search, setSearch] = useState("");
-
+  const [selectedStore, setSelectedStore] = useState();
+  const { storeId } = useParams();
   // ask for user location on page load
   useEffect(() => {
     getLocation(setLocation, defaultLocation);
   }, []);
   // we may want to put a variable inside the dependency array that reruns the use effect when the map moves
   useEffect(() => {
-    if (location) console.log(location);
-  }, [location]);
+    setSelectedStore(getStoreById(stores, storeId));
+  }, [storeId]);
   return (
     <>
       <Header search={search} setSearch={setSearch} setStores={setStores} />
       <main className="main-container">
+        {selectedStore && <StoreDetails selectedStore={selectedStore} />}
         <aside className="main-container__left">
           <StoreList stores={stores} />
         </aside>
