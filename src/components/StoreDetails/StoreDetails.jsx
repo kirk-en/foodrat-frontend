@@ -4,18 +4,22 @@ import { getStoreById } from "../utils/helpers";
 import "./StoreDetails.scss";
 
 const StoreDetails = ({ selectedStore }) => {
-  console.log("delivered to store details component:", selectedStore);
+  const violationsArr = [];
+  for (const date in selectedStore.violationsByDate) {
+    violationsArr.push(selectedStore.violationsByDate[date]);
+  }
 
   return (
     <article className="store-details">
       <h1 className="store-details__store-name">{selectedStore?.name}</h1>
-      {selectedStore.violations.map((violation) => {
-        return (
-          <p key={`${violation.violation_code}-${violation.inspection_date}`}>
-            {violation.violation_description}
-          </p>
-        );
-      })}
+      {violationsArr.map((date, index) => (
+        <div key={index}>
+          <h2>{date[0].inspection_date.split("T")[0]}</h2>
+          {date.map((violation) => (
+            <p>{violation?.violation_description}</p>
+          ))}
+        </div>
+      ))}
     </article>
   );
 };
