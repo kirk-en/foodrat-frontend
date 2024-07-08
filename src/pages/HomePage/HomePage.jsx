@@ -39,7 +39,12 @@ const HomePage = () => {
     <>
       <Header search={search} setSearch={setSearch} setStores={setStores} />
       <main className="main-container">
-        {selectedStore && <StoreDetails selectedStore={selectedStore} />}
+        {selectedStore && (
+          <StoreDetails
+            selectedStore={selectedStore}
+            className="store-details"
+          />
+        )}
         <aside className="main-container__left">
           <StoreList stores={stores} />
         </aside>
