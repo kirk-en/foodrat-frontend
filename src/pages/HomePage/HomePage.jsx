@@ -1,48 +1,65 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import { useParams } from "react-router-dom";
 import UserMap from "../../components/UserMap/UserMap";
 import StoreList from "../../components/StoreList/StoreList";
+import StoreDetails from "../../components/StoreDetails/StoreDetails";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
+import { getLocation, getStoreById } from "../../components/utils/helpers";
 
 import "./HomePage.scss";
 
+// set this location if the user declines to use location sharing
+const defaultLocation = {
+  latitude: 40.720720183542,
+  longitude: -73.988888639603,
+  altitude: null,
+  accuracy: 40,
+  altitudeAccuracy: null,
+  heading: null,
+  speed: null,
+};
+
 const HomePage = () => {
   const [location, setLocation] = useState();
-
-  const getLocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLocation(position.coords);
-    });
-  };
-
+  const [stores, setStores] = useState([]);
+  const [search, setSearch] = useState("");
+  const [selectedStore, setSelectedStore] = useState();
+  const { storeId } = useParams();
+  // ask for user location on page load
   useEffect(() => {
-    getLocation();
+    getLocation(setLocation, defaultLocation);
   }, []);
   // we may want to put a variable inside the dependency array that reruns the use effect when the map moves
   useEffect(() => {
-    if (location) console.log(location);
-  }, [location]);
+    setSelectedStore(getStoreById(stores, storeId));
+  }, [storeId]);
   return (
     <>
-      <Header />
+      <Header search={search} setSearch={setSearch} setStores={setStores} />
       <main className="main-container">
+        {selectedStore && <StoreDetails selectedStore={selectedStore} />}
         <aside className="main-container__left">
-          <StoreList />
+          <StoreList stores={stores} />
         </aside>
         <section className="main-container__right">
           {!location ? (
             <p>FoodRat needs your location to load map</p>
           ) : (
-            // section with alert to disbale API when working with other sections
-            <p>
-              <b style={{ backgroundColor: "red", fontSize: "3rem" }}>
-                Map API Currently Disabled 🗺
-              </b>
-            </p>
-            // Enable to call API and load map 👇
-            // <UserMap location={location} />
+            // 🟠 section with alert to disbale API when working with other sections
+            // <p>
+            //   <b style={{ backgroundColor: "red", fontSize: "3rem" }}>
+            //     Map API Currently Disabled 🗺
+            //   </b>
+            // </p>
+            // 🟠 Enable to call API and load map 👇
+            // Noting here that passing down the setStores state setting function could hurt reusability of <UserMap> component
+            <UserMap
+              location={location}
+              stores={stores}
+              setStores={setStores}
+            />
           )}
         </section>
       </main>

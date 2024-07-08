@@ -3,21 +3,52 @@
 .header {
   display: flex;
   justify-content: space-between;
-
-  &__left,
+  height: 3.5rem;
+  border-bottom: solid 3px rgb(241, 241, 241);
+  align-items: center;
+  &__left {
+    padding: 0 0.5rem;
+  }
   &__right {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    // gap: 1rem;
+    padding: 0.5rem;
+    width: 70%;
+  }
+  &__logo {
+    height: 2.5rem;
+    padding-right: 3rem;
+  }
+  &__search {
+    width: 40%;
+    align-self: center;
+    &-field {
+      // display: inline;
+      height: 2rem;
+      width: 100%;
+      border-radius: 0.5rem;
+      border: solid 1px rgb(192, 192, 192);
+      text-indent: 1rem;
+    }
   }
   &__menu {
     list-style: none;
+    width: 60%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
     &-item {
       display: inline;
-      padding: 0 .5rem;
+      padding: 0 1rem 0.4rem;
+      // z-index: 10;
+      &:hover {
+        border-bottom: solid 3px rgb(192, 192, 192);
+      }
     }
   }
   &__profile-img {
-    width: 3rem;
+    width: 2.5rem;
     border-radius: 50%;
   }
 }

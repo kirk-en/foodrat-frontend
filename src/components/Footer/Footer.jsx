@@ -1,4 +1,4 @@
-import foodRatLogo from '../../assets/concept-art/foodrat-mascot.jpg'
+import foodRatLogo from "../../assets/concept-art/foodrat-mascot-alpha.png";
 import './Footer.scss'
 
 const Footer = () => {
