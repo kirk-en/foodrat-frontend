@@ -52,7 +52,7 @@ export const getStoreById = (storesArr, id) => {
   );
   if (!matchedStore) return;
   console.log("matched", matchedStore);
-  const dateSortedObj = {};
+  const dateSortedObj = [];
   matchedStore.violations.forEach((violation) => {
     dateSortedObj[violation.inspection_date]
       ? dateSortedObj[violation.inspection_date].push(violation)
