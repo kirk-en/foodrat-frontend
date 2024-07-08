@@ -37,7 +37,9 @@ const StoreDetails = ({ selectedStore }) => {
       <div className="store-details__violations">
         {violationsArr.map((date, index) => (
           <div key={index}>
-            <h2>{date[0].inspection_date.split("T")[0]}</h2>
+            <h2 className="store-details__violations-date">
+              {date[0].inspection_date.split("T")[0]}
+            </h2>
             <ul className="store-details__violations-list">
               {date.map((violation) => (
                 <li
@@ -51,9 +53,11 @@ const StoreDetails = ({ selectedStore }) => {
           </div>
         ))}
       </div>
-      <Link to={"/"} className="store-details__bottom">
-        <button>Close</button>
-      </Link>
+      <div className="store-details__bottom">
+        <Link to={"/"}>
+          <button>Close</button>
+        </Link>
+      </div>
     </article>
   );
 };
