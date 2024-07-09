@@ -15,7 +15,6 @@ import markerImagePending from "../../assets/letter-grades/grade-pending.svg";
 import markerImageTBD from "../../assets/letter-grades/grade-tbd.svg";
 import markerImageClosed from "../../assets/letter-grades/grade-closed.svg";
 import { groupByStore, debouncer } from "../utils/helpers";
-import { useParams } from "react-router-dom";
 
 const UserMap = ({ location, stores, setStores }) => {
   const initBounds = {
@@ -47,15 +46,14 @@ const UserMap = ({ location, stores, setStores }) => {
           bounds.north
         } AND latitude > ${bounds.south} AND longitude < ${
           bounds.east
-        } AND longitude > ${bounds.west}&$$app_token=${
+        } AND longitude > ${
+          bounds.west
+        }&$ORDER=inspection_date DESC&$$app_token=${
           import.meta.env.VITE_NYC_APP_TOKEN
         }`
       );
-      // Sort violations from newest to oldest
-      const sortedData = data.sort((a, b) => {
-        return new Date(b.inspection_date) - new Date(a.inspection_date);
-      });
-      setStores(groupByStore(sortedData));
+
+      setStores(groupByStore(data));
     },
     1000,
     [bounds]
@@ -78,8 +76,12 @@ const UserMap = ({ location, stores, setStores }) => {
           disableDefaultUI={true}
           onCameraChanged={handleCameraChange}
         >
-          {stores.map((store) => {
-            if (store.name !== "undefined") {
+          {stores.map((store, index) => {
+            if (
+              store.name !== "undefined" &&
+              store.grade !== undefined &&
+              index < 200
+            ) {
               return (
                 <AdvancedMarker
                   key={store.violations[0].camis}
