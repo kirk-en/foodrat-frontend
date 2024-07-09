@@ -42,6 +42,8 @@ const getLatestGrade = (storesArr) => {
         break;
       }
     }
+    if (!store.grade) {
+    }
   });
 };
 
@@ -116,17 +118,17 @@ export const debouncer = (func, delay, dependencies) => {
 // Checks the most recent inspection for violations involving mice, rats, or roaches
 export const alertCheck = (storeObj) => {
   const latestInspection = storeObj.violations[0].inspection_date;
+  let mouseFlag = false;
   let ratFlag = false;
   let roachFlag = false;
   storeObj.violations
     .filter((violation) => violation.inspection_date === latestInspection)
     .forEach((violation) => {
-      if (
-        violation.violation_code === "04K" ||
-        violation.violation_code === "04L"
-      )
-        ratFlag = true;
+      if (violation.violation_code === "04K") ratFlag = true;
+      if (violation.violation_code === "04L") mouseFlag = true;
       if (violation.violation_code === "04M") roachFlag = true;
     });
-  return `${ratFlag ? "🐀" : ""}${roachFlag ? "🪳" : ""}`;
+  return `${mouseFlag ? "🐁" : ""}${ratFlag ? "🐀" : ""}${
+    roachFlag ? "🪳" : ""
+  }`;
 };
