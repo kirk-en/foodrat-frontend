@@ -22,12 +22,9 @@ const StoreCard = ({ store }) => {
 
   return (
     <>
-      <article className="card">
-        <div className="card__details">
-          <Link
-            className="card__link"
-            to={`/store/${store.violations[0].camis}`}
-          >
+      <Link className="card__link" to={`/store/${store.violations[0].camis}`}>
+        <article className="card">
+          <div className="card__details">
             <h2 className="card__store-name">{store.name}</h2>
             <p className="card__store-address">
               {`${store.violations[0].building} ${store.violations[0].street}, ${store.violations[0].boro}, NY ${store.violations[0].zipcode}`}
@@ -35,16 +32,16 @@ const StoreCard = ({ store }) => {
             <p className="card__store-alerts">
               {alerts === "" ? "" : `Alerts: ${alerts}`}
             </p>
-          </Link>
-        </div>
-        <div className="card__grade">
-          <img
-            src={gradeImages[store.grade]}
-            alt={`the letter grade ${store.grade} for ${store.name}`}
-            className="card__grade-img"
-          />
-        </div>
-      </article>
+          </div>
+          <div className="card__grade">
+            <img
+              src={gradeImages[store.grade]}
+              alt={`the letter grade ${store.grade} for ${store.name}`}
+              className="card__grade-img"
+            />
+          </div>
+        </article>
+      </Link>
     </>
   );
 };

@@ -15,6 +15,7 @@ import markerImagePending from "../../assets/letter-grades/grade-pending.svg";
 import markerImageTBD from "../../assets/letter-grades/grade-tbd.svg";
 import markerImageClosed from "../../assets/letter-grades/grade-closed.svg";
 import { groupByStore, debouncer } from "../utils/helpers";
+import { Link } from "react-router-dom";
 
 const UserMap = ({ location, stores, setStores }) => {
   const initBounds = {
@@ -115,22 +116,27 @@ const UserMap = ({ location, stores, setStores }) => {
                     )
                   }
                 >
-                  <div className="map__store">
-                    <img
-                      src={gradeImages[store.grade]}
-                      width={25}
-                      height={25}
-                      className="map__grade"
-                    />
-                    <span
-                      className="map__business-name"
-                      style={{ width: store.markerWidth + 17 }}
-                    >
-                      {store.name.length > 25
-                        ? store.name.substring(0, 20) + "..."
-                        : store.name}
-                    </span>
-                  </div>
+                  <Link
+                    className="card__link"
+                    to={`/store/${store.violations[0].camis}`}
+                  >
+                    <div className="map__store">
+                      <img
+                        src={gradeImages[store.grade]}
+                        width={25}
+                        height={25}
+                        className="map__grade"
+                      />
+                      <span
+                        className="map__business-name"
+                        style={{ width: store.markerWidth + 17 }}
+                      >
+                        {store.name.length > 25
+                          ? store.name.substring(0, 20) + "..."
+                          : store.name}
+                      </span>
+                    </div>
+                  </Link>
                 </AdvancedMarker>
               );
             } else return;
