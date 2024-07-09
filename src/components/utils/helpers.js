@@ -43,10 +43,6 @@ const getLatestGrade = (storesArr) => {
       }
     }
     if (!store.grade) {
-      console.log(
-        "no grade property found, must calc based on score if valid inspection exists"
-      );
-      for (let i = 0; i < store.violations.length; i++) {}
     }
   });
 };

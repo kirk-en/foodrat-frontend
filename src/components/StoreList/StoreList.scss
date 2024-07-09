@@ -1,5 +1,17 @@
+@use "../../styles/partials/variables.scss" as *;
+
 .store-list {
   &__title {
     padding-bottom: 16px;
+  }
+  &__sort {
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+    &-item {
+      font-size: 0.75rem;
+      text-decoration: none;
+      color: $rat-hover;
+    }
   }
 }
