@@ -2,16 +2,30 @@
 
 .store-list {
   &__title {
-    padding-bottom: 16px;
+    padding-bottom: 0.5rem;
   }
   &__sort {
     display: flex;
     gap: 0.5rem;
     align-items: baseline;
+    font-size: 0.75rem;
+    padding: 0.25rem 0;
+    padding-bottom: 1rem;
+    border-bottom: solid rgb(192, 192, 192) 1px;
     &-item {
-      font-size: 0.75rem;
       text-decoration: none;
-      color: $rat-hover;
+      color: grey;
+      padding: 0.5rem;
+      &:hover {
+        color: #0058a9;
+      }
+      &--active {
+        color: $rat-black;
+        font-weight: 600;
+        background-color: #f1ebd4;
+        border: solid rgb(192, 192, 192) 1px;
+        border-radius: 0.5rem;
+      }
     }
   }
 }

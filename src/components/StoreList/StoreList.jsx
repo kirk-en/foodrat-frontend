@@ -43,7 +43,9 @@ const StoreList = ({ stores }) => {
       <div className="store-list__sort">
         <span className="store-list__sort-title">Sort by:</span>
         <Link
-          className="store-list__sort-item"
+          className={`store-list__sort-item ${
+            sort.key === "name" ? "store-list__sort-item--active" : ""
+          }`}
           onClick={() =>
             sort.key === "name" && sort.direction === "asc"
               ? setSort({ key: "name", direction: "dsc" })
@@ -53,7 +55,9 @@ const StoreList = ({ stores }) => {
           Name
         </Link>
         <Link
-          className="store-list__sort-item"
+          className={`store-list__sort-item ${
+            sort.key === "grade" ? "store-list__sort-item--active" : ""
+          }`}
           onClick={() =>
             sort.key === "grade" && sort.direction === "asc"
               ? setSort({ key: "grade", direction: "dsc" })
@@ -63,7 +67,9 @@ const StoreList = ({ stores }) => {
           Grade
         </Link>
         <Link
-          className="store-list__sort-item"
+          className={`store-list__sort-item ${
+            sort.key === "alert" ? "store-list__sort-item--active" : ""
+          }`}
           onClick={() =>
             sort.key === "alert" && sort.direction === "asc"
               ? setSort({ key: "alert", direction: "dsc" })
