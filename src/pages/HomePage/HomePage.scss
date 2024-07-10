@@ -1,21 +1,38 @@
 @use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
 
 .main-container {
   display: flex;
   justify-content: space-between;
-  height: calc(100vh - (7rem + 3.5rem));
+  height: calc(100vh - (3.5rem));
+  flex-direction: column;
+  @include tablet {
+    height: calc(100vh - (7rem + 3.5rem));
+    flex-direction: row;
+  }
   &__left {
     background-color: $rat-light;
-    width: 30%;
-    height: fill;
     padding: 1rem 0.5rem;
     display: flex;
     flex-direction: column;
     overflow: scroll;
     overflow-x: hidden;
+    height: 40%;
+    order: 1;
+    border-top: solid rgb(192, 192, 192) 8px;
+    @include tablet {
+      width: 30%;
+      order: 0;
+      height: 100%;
+    }
   }
   &__right {
-    background-image: url("../../assets/map-placeholder.jpg");
-    width: 70%;
+    width: 100%;
+    height: 60%;
+    @include tablet {
+      background-image: url("../../assets/map-placeholder.jpg");
+      width: 70%;
+      height: 100%;
+    }
   }
 }

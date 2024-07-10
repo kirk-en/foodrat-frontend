@@ -53,8 +53,8 @@ const StoreDetails = ({ selectedStore }) => {
         ))}
       </div>
       <div className="store-details__bottom">
-        <Link to={"/"}>
-          <button>Close</button>
+        <Link to={"/"} className="store-details__btn">
+          <span>Close</span>
         </Link>
       </div>
     </article>
