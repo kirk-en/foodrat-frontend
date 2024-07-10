@@ -25,3 +25,22 @@
     // word-wrap: normal;
   }
 }
+
+// remove options and links on the bottom of the map
+a[href^="http://maps.google.com/maps"]
+{
+  display: none;
+}
+a[href^="https://maps.google.com/maps"]
+{
+  display: none !important;
+}
+
+.gmnoprint a,
+.gmnoprint span,
+.gm-style-cc {
+  display: none;
+}
+.gmnoprint div {
+  background: none;
+}

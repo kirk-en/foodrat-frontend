@@ -1,10 +1,13 @@
 @use "../../styles/partials/variables.scss" as *;
-
+@use "../../styles/partials/mixins.scss" as *;
 .footer {
-  display: flex;
-  justify-content: center;
-  background-color: $rat-light;
-  &__logo {
-    width: 7rem;
+  display: none;
+  @include tablet {
+    display: flex;
+    justify-content: center;
+    background-color: $rat-light;
+    &__logo {
+      width: 7rem;
+    }
   }
 }
