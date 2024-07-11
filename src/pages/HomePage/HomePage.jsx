@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import UserMap from "../../components/UserMap/UserMap";
@@ -50,7 +49,7 @@ const HomePage = () => {
         </aside>
         <section className="main-container__right">
           {!location ? (
-            <p>FoodRat needs your location to load map</p>
+            <p>Finding location 🌎</p>
           ) : (
             // 🟠 section with alert to disbale API when working with other sections
             // <p>

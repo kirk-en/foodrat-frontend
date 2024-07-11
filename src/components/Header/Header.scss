@@ -1,5 +1,6 @@
 @use "../../styles/partials/typography.scss" as *;
 @use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
 
 .header {
   display: flex;
@@ -52,8 +53,13 @@
     }
     &-item {
       display: inline;
-      padding: 0 1rem 0.4rem;
+
       // z-index: 10;
+    }
+    &-link {
+      color: $rat-black;
+      text-decoration: none;
+      padding: 0 1rem 0.4rem;
       &:hover {
         border-bottom: solid 3px rgb(192, 192, 192);
       }
