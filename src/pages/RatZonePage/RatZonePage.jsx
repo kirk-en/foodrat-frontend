@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import UserMap from "../../components/UserMap/UserMap";
-import StoreList from "../../components/StoreList/StoreList";
-import StoreDetails from "../../components/StoreDetails/StoreDetails";
+import UserMapRatZone from "../../components/UserMapRatZone/UserMapRatZone";
+// import StoreList from "../../components/StoreList/StoreList";
+// import StoreDetails from "../../components/StoreDetails/StoreDetails";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { getLocation, getStoreById } from "../../components/utils/helpers";
+import ratzoneLogo from "../../assets/game/ratzone-alt.png";
+import ratzoneRat from "../../assets/game/ratzone-mascot-2.png";
 
-import "./HomePage.scss";
+import "./RatZonePage.scss";
 
 // set this location if the user declines to use location sharing
 const defaultLocation = {
@@ -20,7 +22,7 @@ const defaultLocation = {
   speed: null,
 };
 
-const HomePage = () => {
+const RatZonePage = () => {
   const [location, setLocation] = useState();
   const [stores, setStores] = useState([]);
   const [search, setSearch] = useState("");
@@ -37,29 +39,30 @@ const HomePage = () => {
   return (
     <>
       <Header search={search} setSearch={setSearch} setStores={setStores} />
-      <main className="main-container">
-        {selectedStore && (
+      <div className="ratzone-container__logo">
+        <img
+          style={{ transform: "scaleX(-1)" }}
+          src={ratzoneRat}
+          alt="a cute cartoon rat eating"
+        />
+        <img
+          src={ratzoneLogo}
+          alt="the words ratzone in army style typography"
+        />
+        <img src={ratzoneRat} alt="a cute cartoon rat eating" />
+      </div>
+      <main className="ratzone-container">
+        {/* {selectedStore && (
           <StoreDetails
             selectedStore={selectedStore}
             className="store-details"
           />
-        )}
-        <aside className="main-container__left">
-          <StoreList stores={stores} />
-        </aside>
-        <section className="main-container__right">
+        )} */}
+        <section className="ratzone-container__full-width-map">
           {!location ? (
-            <p>FoodRat needs your location to load map</p>
+            <p>Findiing location...</p>
           ) : (
-            // 🟠 section with alert to disbale API when working with other sections
-            // <p>
-            //   <b style={{ backgroundColor: "red", fontSize: "3rem" }}>
-            //     Map API Currently Disabled 🗺
-            //   </b>
-            // </p>
-            // 🟠 Enable to call API and load map 👇
-            // Noting here that passing down the setStores state setting function could hurt reusability of <UserMap> component
-            <UserMap
+            <UserMapRatZone
               location={location}
               stores={stores}
               setStores={setStores}
@@ -72,4 +75,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default RatZonePage;

@@ -1,0 +1,43 @@
+.map {
+  height: 100%;
+  &__uav-mark {
+    background-color: #e74f53;
+    padding: 0.5rem 0.5rem;
+    border-radius: 50%;
+    opacity: 0.75;
+    &:hover {
+      background-color: #7294dc;
+      color: white;
+    }
+  }
+  &__grade {
+    border-radius: 10%;
+  }
+  &__business-name {
+    font-weight: 300;
+    // font-size: 0.7rem;
+    // width: 4rem;
+    // text-overflow: ellipsis;
+    // white-space: pre-wrap;
+    // word-wrap: normal;
+  }
+}
+
+// remove options and links on the bottom of the map
+a[href^="http://maps.google.com/maps"]
+{
+  display: none;
+}
+a[href^="https://maps.google.com/maps"]
+{
+  display: none !important;
+}
+
+.gmnoprint a,
+.gmnoprint span,
+.gm-style-cc {
+  display: none;
+}
+.gmnoprint div {
+  background: none;
+}

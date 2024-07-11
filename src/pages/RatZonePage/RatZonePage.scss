@@ -1,0 +1,28 @@
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
+
+.ratzone-container {
+  // display: flex;
+  // justify-content: space-between;
+  height: calc(100vh - (3.5rem));
+  flex-direction: column;
+  @include tablet {
+    height: calc(100vh - (7rem + 3.5rem + 5rem));
+    // flex-direction: row;
+  }
+  &__logo {
+    display: flex;
+    justify-content: center;
+    height: 5rem;
+    gap: 1rem;
+  }
+  &__full-width-map {
+    width: 100%;
+    height: 50%;
+    @include tablet {
+      background-image: url("../../assets/map-placeholder.jpg");
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

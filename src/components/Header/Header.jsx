@@ -60,7 +60,9 @@ const Header = ({ search, setSearch, setStores }) => {
           <ul>
             <li className="header__menu-item">Home</li>
             <li className="header__menu-item">About</li>
-            <li className="header__menu-item">RatZone</li>
+            <li className="header__menu-item">
+              <Link to={"/ratzone"}>RatZone</Link>
+            </li>
             <li className="header__menu-item">Swag Shop</li>
           </ul>
           <img
