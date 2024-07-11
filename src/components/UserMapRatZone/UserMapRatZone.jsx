@@ -14,11 +14,13 @@ import markerImageC from "../../assets/letter-grades/grade-c.svg";
 import markerImagePending from "../../assets/letter-grades/grade-pending.svg";
 import markerImageTBD from "../../assets/letter-grades/grade-tbd.svg";
 import markerImageClosed from "../../assets/letter-grades/grade-closed.svg";
-import { groupByStore, debouncer } from "../utils/helpers";
+import { groupByStore, debouncer, calculateBounds } from "../utils/helpers";
 import { Link } from "react-router-dom";
+import { Circle } from "../Circle/Circle";
 
 const UserMapRatZone = ({ location, stores, setStores }) => {
   const map = useMap();
+
   const initBounds = {
     north: location.latitude + 0.002674456117198,
     south: location.latitude - 0.002674456117198,
@@ -34,9 +36,13 @@ const UserMapRatZone = ({ location, stores, setStores }) => {
     CLOSED: markerImageClosed,
   };
   const [bounds, setBounds] = useState(initBounds);
+  const [circleCenter, setCircleCenter] = useState(location);
 
   const handleCameraChange = useCallback((event) => {
-    setBounds(event.detail.bounds);
+    setCircleCenter(event.detail.center);
+    setBounds(
+      calculateBounds(event.detail.center.lat, event.detail.center.lng, 200)
+    );
     // console.log("bounds state:", bounds);
   });
 
@@ -50,7 +56,7 @@ const UserMapRatZone = ({ location, stores, setStores }) => {
           bounds.east
         } AND longitude > ${
           bounds.west
-        }&$ORDER=inspection_date DESC&$$app_token=${
+        }&$ORDER=inspection_date DESC&$limit=20000&$$app_token=${
           import.meta.env.VITE_NYC_APP_TOKEN
         }`
       );
@@ -60,12 +66,6 @@ const UserMapRatZone = ({ location, stores, setStores }) => {
     1000,
     [bounds]
   );
-
-  const redCoords = [
-    { lat: 25.774, lng: -80.19 },
-    { lat: 18.466, lng: -66.118 },
-    { lat: 32.321, lng: -64.757 },
-  ];
 
   return (
     <>
@@ -84,11 +84,22 @@ const UserMapRatZone = ({ location, stores, setStores }) => {
           disableDefaultUI={true}
           onCameraChanged={handleCameraChange}
         >
-          {stores.map((store, index) => {
+          <Circle
+            radius={200}
+            center={circleCenter}
+            strokeColor={"#0c4cb3"}
+            strokeOpacity={1}
+            strokeWeight={3}
+            fillColor={"#3b82f6"}
+            fillOpacity={0.3}
+          />
+
+          {stores.map((store, index, arr) => {
+            let uavChance = Math.floor(Math.random() * arr.length) / 5;
             if (
               store.name !== "undefined" &&
               store.grade !== undefined &&
-              index < 20
+              index < uavChance
             ) {
               return (
                 <AdvancedMarker
@@ -111,17 +122,7 @@ const UserMapRatZone = ({ location, stores, setStores }) => {
                   collisionBehavior={
                     CollisionBehavior.OPTIONAL_AND_HIDES_LOWER_PRIORITY
                   }
-                  onClick={() =>
-                    console.log(
-                      `lat - ${store.coords.latitude} | long - ${
-                        store.coords.longitude
-                      } | ${store.name} - ${store.grade} Grade, ${
-                        store.violations[0].score
-                          ? store.violations[0].score
-                          : "N/A"
-                      } points`
-                    )
-                  }
+                  onClick={() => console.log(`Rat UAV!`)}
                 >
                   <div className="map__uav-mark"></div>
                 </AdvancedMarker>

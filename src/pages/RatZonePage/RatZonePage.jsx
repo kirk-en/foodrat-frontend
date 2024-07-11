@@ -5,7 +5,11 @@ import UserMapRatZone from "../../components/UserMapRatZone/UserMapRatZone";
 // import StoreDetails from "../../components/StoreDetails/StoreDetails";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
-import { getLocation, getStoreById } from "../../components/utils/helpers";
+import {
+  getLocation,
+  getStoreById,
+  ratZone,
+} from "../../components/utils/helpers";
 import ratzoneLogo from "../../assets/game/ratzone-alt.png";
 import ratzoneRat from "../../assets/game/ratzone-mascot-2.png";
 
@@ -70,7 +74,14 @@ const RatZonePage = () => {
           )}
         </section>
       </main>
-      <Footer />
+      <button
+        onClick={() => {
+          console.log("init ratZone play");
+          ratZone(stores);
+        }}
+      >
+        Drop In!
+      </button>
     </>
   );
 };

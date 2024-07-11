@@ -132,3 +132,63 @@ export const alertCheck = (storeObj) => {
     roachFlag ? "🪳" : ""
   }`;
 };
+
+export const calculateBounds = (centerLat, centerLng, radius) => {
+  // Earth's radius in kilometers
+  const earthRadius = 6371;
+
+  // Convert radius from meters to kilometers
+  const radiusInKm = radius / 1000;
+
+  // Latitude: 1 degree = 111.32 km
+  const latChange = radiusInKm / 111.32;
+  const north = centerLat + latChange;
+  const south = centerLat - latChange;
+
+  // Longitude: 1 degree = 111.32 km * cos(latitude)
+  const lngChange =
+    radiusInKm / (111.32 * Math.cos(centerLat * (Math.PI / 180)));
+  const east = centerLng + lngChange;
+  const west = centerLng - lngChange;
+
+  return {
+    north,
+    south,
+    east,
+    west,
+  };
+};
+
+export const ratZone = (storesArr) => {
+  let score = 0;
+  let countA = 0;
+  let countB = 0;
+  let countC = 0;
+  let countZ = 0;
+  let countClosed = 0;
+  storesArr.map((store) => {
+    if (store.grade === "A") {
+      score += 1;
+      countA++;
+    }
+    if (store.grade === "B") {
+      score += 100;
+      countB++;
+    }
+    if (store.grade === "Z") {
+      score += 500;
+      countC++;
+    }
+    if (store.grade === "C") {
+      score += 1000;
+      countZ++;
+    }
+    if (store.grade === "CLOSED") {
+      score += 5000;
+      countClosed++;
+    }
+  });
+  console.log(
+    `ratzone grade letter total score: ${score}\n A grades: ${countA}\n B grades: ${countB}\n C grades: ${countC}\n Grade pending: ${countZ}\n Close by DOH: ${countClosed}`
+  );
+};
