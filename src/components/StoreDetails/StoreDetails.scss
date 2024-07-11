@@ -23,17 +23,29 @@
     height: 10%;
   }
   &__grade-img {
-    width: 6rem;
+    width: 2rem;
+    @include tablet {
+      width: 6rem;
+    }
   }
   &__violations {
-    height: 80%;
     overflow-y: scroll;
+    height: 75%;
+    @include tablet {
+      height: 80%;
+    }
     &-date {
-      font-size: 1.25rem;
-      font-weight: 600;
+      font-size: 1rem;
+      @include tablet {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
     }
     &-list {
-      padding: 1rem 6rem 1rem 2rem;
+      padding: 0 1rem 2rem;
+      @include tablet {
+        padding: 1rem 6rem 1rem 2rem;
+      }
       &-item {
         padding: 0.25rem 0;
       }
@@ -44,7 +56,10 @@
     justify-content: center;
     align-items: center;
     padding: 1.25rem 0 1.25rem;
-    height: 10%;
+    height: 15%;
+    @include tablet {
+      height: 10%;
+    }
   }
   &__btn {
     background-color: #0058a9;
