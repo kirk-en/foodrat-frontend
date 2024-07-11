@@ -1,0 +1,106 @@
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
+
+.store-details {
+  position: absolute;
+  background-color: $rat-light;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  border-radius: 0.5rem;
+  width: 90vw;
+  height: 75vh;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  padding: 2rem 4rem 0;
+  overflow: auto;
+  // opacity: 0;
+  animation: fadeIn 0.35s forwards;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10%;
+  }
+  &__grade-img {
+    width: 2rem;
+    @include tablet {
+      width: 6rem;
+    }
+  }
+  &__violations {
+    overflow-y: scroll;
+    height: 75%;
+    @include tablet {
+      height: 80%;
+    }
+    &-date {
+      font-size: 1rem;
+      @include tablet {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+    }
+    &-list {
+      padding: 0 1rem 2rem;
+      @include tablet {
+        padding: 1rem 6rem 1rem 2rem;
+      }
+      &-item {
+        padding: 0.25rem 0;
+      }
+    }
+  }
+  &__bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem 0 1.25rem;
+    height: 15%;
+    @include tablet {
+      height: 10%;
+    }
+  }
+  &__btn {
+    background-color: #0058a9;
+    text-decoration: none;
+    color: white;
+    border-radius: 0.5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include tablet {
+      width: 50%;
+    }
+    &:hover {
+      background-color: #056ed1;
+    }
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -25%); /* optional: slide up effect */
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.results-flex {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 4rem;
+}
+
+.end-score {
+  color: transparent;
+  border: 2px solid black;
+  font-size: 3rem;
+  &--clicked {
+    color: black;
+  }
+}

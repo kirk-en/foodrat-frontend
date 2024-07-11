@@ -5,6 +5,8 @@ import UserMapRatZone from "../../components/UserMapRatZone/UserMapRatZone";
 // import StoreDetails from "../../components/StoreDetails/StoreDetails";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
+import GameResult from "../../components/GameResult/GameResult";
+import StoreDetails from "../../components/StoreDetails/StoreDetails";
 import {
   getLocation,
   getStoreById,
@@ -33,7 +35,9 @@ const RatZonePage = () => {
   const [search, setSearch] = useState("");
   const [selectedStore, setSelectedStore] = useState();
   const [radar, setRadar] = useState(false);
+  const [playerScore, setPlayerScore] = useState(undefined);
   const { storeId } = useParams();
+  const { result } = useParams();
   // ask for user location on page load
   useEffect(() => {
     getLocation(setLocation, defaultLocation);
@@ -56,14 +60,16 @@ const RatZonePage = () => {
           alt="the words ratzone in army style typography"
         />
         <img src={ratzoneRat} alt="a cute cartoon rat eating" />
+        {/* <p>(Early Access v0.1)</p> */}
       </div>
       <main className="ratzone-container">
-        {/* {selectedStore && (
-          <StoreDetails
-            selectedStore={selectedStore}
+        {result && (
+          <GameResult
+            playerScore={playerScore}
+            radar={radar}
             className="store-details"
           />
-        )} */}
+        )}
         <section className="ratzone-container__full-width-map">
           {!location ? (
             <p>Findiing location...</p>
@@ -96,7 +102,7 @@ const RatZonePage = () => {
           to={"/ratzone/result"}
           onClick={() => {
             console.log("init ratZone play");
-            ratZone(stores, radar);
+            setPlayerScore(ratZone(stores, radar));
           }}
           className="ratzone-footer__btn ratzone-footer__btn--drop"
         >

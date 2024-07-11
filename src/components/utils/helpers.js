@@ -257,5 +257,26 @@ export const ratZone = (storesArr, radar) => {
     multiplier: ${multi}
     `
   );
+  return {
+    score: score,
+    countA: countA,
+    countB: countB,
+    countC: countC,
+    countZ: countZ,
+    countClosed: countClosed,
+    mouseCount: mouseCount,
+    ratCount: ratCount,
+    roachCount: roachCount,
+    critterScoreAdd: {
+      mouse: mouseScore,
+      roach: roachScore,
+      rat: ratScore,
+    },
+    mouseRatBonus: mouseRatBonus,
+    above75bonus: above75bonus,
+    above100bonus: above100bonus,
+    above125bonus: above125bonus,
+    multiplier: multi,
+  };
   return;
 };
