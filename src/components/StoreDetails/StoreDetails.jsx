@@ -37,7 +37,9 @@ const StoreDetails = ({ selectedStore }) => {
         {violationsArr.map((date, index) => (
           <div key={index}>
             <h2 className="store-details__violations-date">
-              {date[0].inspection_date.split("T")[0]}
+              {date[0].inspection_date.split("T")[0] === "1900-01-01"
+                ? "Pending initial inspection"
+                : date[0].inspection_date.split("T")[0]}
             </h2>
             <ul className="store-details__violations-list">
               {date.map((violation) => (
