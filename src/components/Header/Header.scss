@@ -19,7 +19,10 @@
   }
   &__logo {
     height: 2.5rem;
-    padding-right: 3rem;
+    padding: 0;
+    @include tablet {
+      padding-right: 3rem;
+    }
   }
   &__search {
     align-self: center;
