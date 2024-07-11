@@ -7,9 +7,12 @@
     display: flex;
     justify-content: space-between;
     position: fixed;
-    width: 100%;
     background-color: $rat-light;
     padding-top: 1rem;
+    width: 100%;
+    @include tablet {
+      width: calc(30% - 0.5rem);
+    }
     &-left-side {
       display: flex;
       flex-direction: column;
