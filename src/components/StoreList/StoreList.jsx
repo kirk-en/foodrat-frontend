@@ -89,10 +89,12 @@ const StoreList = ({ stores }) => {
           alt="a cute rat chewing on a letter C grade restaurant sign"
         />
       </section>
-      {stores.sort(sortSwith(sort.key)).map((store) => {
-        if (store.grade !== undefined)
-          return <StoreCard store={store} key={store.violations[0].camis} />;
-      })}
+      <section className="store-list__results">
+        {stores.sort(sortSwith(sort.key)).map((store) => {
+          if (store.grade !== undefined && store.name !== "undefined")
+            return <StoreCard store={store} key={store.violations[0].camis} />;
+        })}
+      </section>
     </>
   );
 };

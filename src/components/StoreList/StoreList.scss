@@ -6,6 +6,10 @@
     border-bottom: solid rgb(192, 192, 192) 1px;
     display: flex;
     justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    background-color: $rat-light;
+    padding-top: 1rem;
     &-left-side {
       display: flex;
       flex-direction: column;
@@ -45,5 +49,8 @@
     @include tablet {
       display: none;
     }
+  }
+  &__results {
+    padding-top: 6rem;
   }
 }
