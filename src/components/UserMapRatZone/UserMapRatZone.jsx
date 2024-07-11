@@ -18,7 +18,7 @@ import { groupByStore, debouncer, calculateBounds } from "../utils/helpers";
 import { Link } from "react-router-dom";
 import { Circle } from "../Circle/Circle";
 
-const UserMapRatZone = ({ location, stores, setStores }) => {
+const UserMapRatZone = ({ location, stores, setStores, radar }) => {
   const map = useMap();
 
   const initBounds = {
@@ -95,7 +95,9 @@ const UserMapRatZone = ({ location, stores, setStores }) => {
           />
 
           {stores.map((store, index, arr) => {
-            let uavChance = Math.floor(Math.random() * arr.length) / 5;
+            let uavChance = radar
+              ? Math.floor(Math.random() * arr.length) / 5
+              : 0;
             if (
               store.name !== "undefined" &&
               store.grade !== undefined &&

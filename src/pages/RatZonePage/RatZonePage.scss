@@ -26,3 +26,44 @@
     }
   }
 }
+.ratzone-footer {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  justify-content: center;
+  &__btn {
+    background-color: #0058a9;
+    text-decoration: none;
+    color: white;
+    border-radius: 0.5rem;
+    // width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include tablet {
+      width: 20rem;
+    }
+    &:hover {
+      background-color: #056ed1;
+    }
+    &--radar-on {
+      background-color: $rat-alert;
+      &:hover {
+        background-color: $rat-alert;
+      }
+    }
+    &--drop {
+      background-color: rgb(61, 182, 61);
+      &:hover {
+        background-color: rgb(116, 204, 116);
+        color: $rat-black;
+      }
+    }
+  }
+  &__detail {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: rgb(231, 172, 172);
+  }
+}

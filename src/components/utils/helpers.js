@@ -159,14 +159,22 @@ export const calculateBounds = (centerLat, centerLng, radius) => {
   };
 };
 
-export const ratZone = (storesArr) => {
+export const ratZone = (storesArr, radar) => {
   let score = 0;
   let countA = 0;
   let countB = 0;
   let countC = 0;
   let countZ = 0;
   let countClosed = 0;
-  storesArr.map((store) => {
+  let ratCount = 0;
+  let mouseCount = 0;
+  let roachCount = 0;
+  let mouseRatBonus = false;
+  let above75bonus = false;
+  let above100bonus = false;
+  let above125bonus = false;
+  let multi = 1;
+  storesArr.forEach((store) => {
     if (store.grade === "A") {
       score += 1;
       countA++;
@@ -187,8 +195,67 @@ export const ratZone = (storesArr) => {
       score += 5000;
       countClosed++;
     }
+    // mouse + rat multiplier bonus check
+    if (alertCheck(store).includes("🐁🐀") && !mouseRatBonus) {
+      console.log("Mice and Rats in same store!");
+      mouseRatBonus = true;
+      multi += 0.5;
+    }
+    store.violations.forEach((violation) => {
+      // increment rat count
+      if (violation.violation_code === "04K") {
+        ratCount++;
+      }
+      // increment mouse count
+      if (violation.violation_code === "04L") {
+        mouseCount++;
+      }
+      // increment roach count
+      if (violation.violation_code === "04M") {
+        roachCount++;
+      }
+      // multiplier check for high scoring restaurants
+      if (!above75bonus && violation.score > 75) {
+        above75bonus = true;
+        multi += 0.5;
+      }
+      if (!above100bonus && violation.score > 100) {
+        above100bonus = true;
+        multi += 0.75;
+      }
+      if (!above125bonus && violation.score > 125) {
+        above125bonus = true;
+        multi += 1.25;
+      }
+      // DOH fines
+    });
   });
+  // tally all scores and adjust
+  let mouseScore = mouseCount * 50;
+  let roachScore = roachCount * 75;
+  let ratScore = ratCount * 250;
+  score += mouseScore + roachScore + ratScore;
+  score = score * multi;
+  if (radar) score = score * 0.95;
+
   console.log(
-    `ratzone grade letter total score: ${score}\n A grades: ${countA}\n B grades: ${countB}\n C grades: ${countC}\n Grade pending: ${countZ}\n Close by DOH: ${countClosed}`
+    `ratzone grade letter total 
+    score: ${score} 
+    A grades: ${countA} 
+    B grades: ${countB}
+    C grades: ${countC}
+    Grade pending: ${countZ}
+    Close by DOH: ${countClosed}
+    Mouse Count: ${mouseCount}
+    Rat count: ${ratCount}
+    Roach Count: ${roachCount}
+    critter score add: mouse - ${mouseScore} roach - ${roachScore} rat - ${ratScore}
+    Mouse + Rat in same bonus: ${mouseRatBonus}
+    Above 75: ${above75bonus}
+    Above 100 ${above100bonus}
+    Above 125 ${above125bonus}
+    multiplier: ${multi}
+    `
   );
+  return;
 };

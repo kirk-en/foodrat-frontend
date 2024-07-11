@@ -12,6 +12,7 @@ import {
 } from "../../components/utils/helpers";
 import ratzoneLogo from "../../assets/game/ratzone-alt.png";
 import ratzoneRat from "../../assets/game/ratzone-mascot-2.png";
+import { Link } from "react-router-dom";
 
 import "./RatZonePage.scss";
 
@@ -31,6 +32,7 @@ const RatZonePage = () => {
   const [stores, setStores] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedStore, setSelectedStore] = useState();
+  const [radar, setRadar] = useState(false);
   const { storeId } = useParams();
   // ask for user location on page load
   useEffect(() => {
@@ -70,18 +72,37 @@ const RatZonePage = () => {
               location={location}
               stores={stores}
               setStores={setStores}
+              radar={radar}
             />
           )}
         </section>
       </main>
-      <button
-        onClick={() => {
-          console.log("init ratZone play");
-          ratZone(stores);
-        }}
-      >
-        Drop In!
-      </button>
+      <footer className="ratzone-footer">
+        <Link
+          onClick={() => {
+            setRadar(true);
+            console.log("radar on");
+          }}
+          className={`ratzone-footer__btn ${
+            radar ? "ratzone-footer__btn--radar-on" : ""
+          }`}
+        >
+          <p>
+            Use Rat Radar UAV{" "}
+            <span className="ratzone-footer__detail"> (Final Score -5%)</span>
+          </p>
+        </Link>
+        <Link
+          to={"/ratzone/result"}
+          onClick={() => {
+            console.log("init ratZone play");
+            ratZone(stores, radar);
+          }}
+          className="ratzone-footer__btn ratzone-footer__btn--drop"
+        >
+          Drop In!
+        </Link>
+      </footer>
     </>
   );
 };

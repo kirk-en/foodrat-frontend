@@ -11,6 +11,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/store/:storeId" element={<HomePage />} />
           <Route path="/ratzone" element={<RatZonePage />} />
+          <Route path="/ratzone/:result" element={<RatZonePage />} />
         </Routes>
       </BrowserRouter>
     </>

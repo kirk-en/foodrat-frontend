@@ -49,7 +49,7 @@ const HomePage = () => {
         </aside>
         <section className="main-container__right">
           {!location ? (
-            <p>FoodRat needs your location to load map</p>
+            <p>Finding location 🌎</p>
           ) : (
             // 🟠 section with alert to disbale API when working with other sections
             // <p>

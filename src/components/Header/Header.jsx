@@ -58,12 +58,22 @@ const Header = ({ search, setSearch, setStores }) => {
         </form>
         <nav className="header__menu">
           <ul>
-            <li className="header__menu-item">Home</li>
-            <li className="header__menu-item">About</li>
             <li className="header__menu-item">
-              <Link to={"/ratzone"}>RatZone</Link>
+              <Link to={"/"} className="header__menu-link">
+                Home
+              </Link>
             </li>
-            <li className="header__menu-item">Swag Shop</li>
+            <li className="header__menu-item">
+              <Link className="header__menu-link">About</Link>
+            </li>
+            <li className="header__menu-item">
+              <Link to={"/ratzone"} className="header__menu-link">
+                RatZone
+              </Link>
+            </li>
+            {/* <li className="header__menu-item">
+              <Link className="header__menu-link">Swag Shop</Link>
+            </li> */}
           </ul>
           <img
             className="header__profile-img"
