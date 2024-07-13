@@ -25,10 +25,11 @@ const HomePage = () => {
   const [stores, setStores] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedStore, setSelectedStore] = useState();
+  const [supportedRegion, setSupportedRegion] = useState(true);
   const { storeId } = useParams();
   // ask for user location on page load
   useEffect(() => {
-    getLocation(setLocation, defaultLocation);
+    getLocation(setLocation, defaultLocation, setSupportedRegion);
   }, []);
   // we may want to put a variable inside the dependency array that reruns the use effect when the map moves
   useEffect(() => {
@@ -49,7 +50,9 @@ const HomePage = () => {
         </aside>
         <section className="main-container__right">
           {!location ? (
-            <p>Finding location 🌎</p>
+            <div className="main-container__loading-text">
+              <p>Loading Map + Finding location 🌎</p>
+            </div>
           ) : (
             // 🟠 section with alert to disbale API when working with other sections
             // <p>
@@ -67,7 +70,7 @@ const HomePage = () => {
           )}
         </section>
       </main>
-      <Footer />
+      <Footer supportedRegion={supportedRegion} />
     </>
   );
 };

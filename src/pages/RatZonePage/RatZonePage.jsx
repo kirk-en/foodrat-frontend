@@ -40,7 +40,7 @@ const RatZonePage = () => {
   const { result } = useParams();
   // ask for user location on page load
   useEffect(() => {
-    getLocation(setLocation, defaultLocation);
+    getLocation(setLocation, defaultLocation, () => {});
   }, []);
   // we may want to put a variable inside the dependency array that reruns the use effect when the map moves
   useEffect(() => {
@@ -72,7 +72,9 @@ const RatZonePage = () => {
         )}
         <section className="ratzone-container__full-width-map">
           {!location ? (
-            <p>Findiing location...</p>
+            <div className="ratzone-container__loading-text">
+              <p>Loading Map + Finding location... 🌎</p>
+            </div>
           ) : (
             <UserMapRatZone
               location={location}
