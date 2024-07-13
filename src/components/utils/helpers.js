@@ -85,10 +85,11 @@ const getWordWidth = (text, font) => {
   return context.measureText(text).width;
 };
 
-export const getLocation = (setStateFunc, defaultLoc) => {
+export const getLocation = (setStateFunc, defaultLoc, setRegionFlagFunc) => {
   navigator.geolocation.getCurrentPosition(
     (position) => {
       console.log("user position:", position);
+      if ()
       setStateFunc(position.coords);
     },
     () => {
