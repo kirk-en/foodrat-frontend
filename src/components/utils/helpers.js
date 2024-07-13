@@ -89,8 +89,15 @@ export const getLocation = (setStateFunc, defaultLoc, setRegionFlagFunc) => {
   navigator.geolocation.getCurrentPosition(
     (position) => {
       console.log("user position:", position);
-      if ()
-      setStateFunc(position.coords);
+      if (
+        position.coords.longitude < -74.27 ||
+        position.coords.longitude > -73.65 ||
+        position.coords.latitude < 40.48 ||
+        position.coords.latitude > 40.93
+      ) {
+        setRegionFlagFunc(false);
+        setStateFunc(defaultLoc);
+      } else setStateFunc(position.coords);
     },
     () => {
       setStateFunc(defaultLoc);
