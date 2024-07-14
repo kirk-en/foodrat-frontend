@@ -42,7 +42,6 @@ const RatZonePage = () => {
   useEffect(() => {
     getLocation(setLocation, defaultLocation, () => {});
   }, []);
-  // we may want to put a variable inside the dependency array that reruns the use effect when the map moves
   useEffect(() => {
     setSelectedStore(getStoreById(stores, storeId));
   }, [storeId]);
@@ -60,7 +59,6 @@ const RatZonePage = () => {
           alt="the words ratzone in army style typography"
         />
         <img src={ratzoneRat} alt="a cute cartoon rat eating" />
-        {/* <p>(Early Access v0.1)</p> */}
       </div>
       <main className="ratzone-container">
         {result && (

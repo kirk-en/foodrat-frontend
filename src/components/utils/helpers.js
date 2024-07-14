@@ -53,7 +53,7 @@ export const getStoreById = (storesArr, id) => {
     (store) => store.violations[0].camis == id
   );
   if (!matchedStore) return;
-  console.log("matched", matchedStore);
+
   const dateSortedObj = [];
   matchedStore.violations.forEach((violation) => {
     dateSortedObj[violation.inspection_date]
@@ -88,7 +88,6 @@ const getWordWidth = (text, font) => {
 export const getLocation = (setStateFunc, defaultLoc, setRegionFlagFunc) => {
   navigator.geolocation.getCurrentPosition(
     (position) => {
-      console.log("user position:", position);
       if (
         position.coords.longitude < -74.27 ||
         position.coords.longitude > -73.65 ||
@@ -205,7 +204,6 @@ export const ratZone = (storesArr, radar) => {
     }
     // mouse + rat multiplier bonus check
     if (alertCheck(store).includes("🐁🐀") && !mouseRatBonus) {
-      console.log("Mice and Rats in same store!");
       mouseRatBonus = true;
       multi += 0.5;
     }
@@ -246,25 +244,6 @@ export const ratZone = (storesArr, radar) => {
   score = score * multi;
   if (radar) score = score * 0.95;
 
-  console.log(
-    `ratzone grade letter total 
-    score: ${score} 
-    A grades: ${countA} 
-    B grades: ${countB}
-    C grades: ${countC}
-    Grade pending: ${countZ}
-    Close by DOH: ${countClosed}
-    Mouse Count: ${mouseCount}
-    Rat count: ${ratCount}
-    Roach Count: ${roachCount}
-    critter score add: mouse - ${mouseScore} roach - ${roachScore} rat - ${ratScore}
-    Mouse + Rat in same bonus: ${mouseRatBonus}
-    Above 75: ${above75bonus}
-    Above 100 ${above100bonus}
-    Above 125 ${above125bonus}
-    multiplier: ${multi}
-    `
-  );
   return {
     score: score,
     countA: countA,
