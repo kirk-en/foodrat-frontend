@@ -1,4 +1,4 @@
-# <a href="https://yourwebsiteurl.com" target="_blank">FoodRat</a> ![foodrat mascot](https://github.com/kirk-en/foodrat-frontend/blob/develop/src/assets/concept-art/mascot-wordmark-alpha.png)
+# [FoodRat](https://foodrat.com/) ![foodrat mascot](https://github.com/kirk-en/foodrat-frontend/blob/develop/src/assets/concept-art/mascot-wordmark-alpha.png)
 
 ## Overview
 
