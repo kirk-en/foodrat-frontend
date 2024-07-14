@@ -18,7 +18,6 @@ const Header = ({ search, setSearch, setStores }) => {
     const sortedData = data.sort((a, b) => {
       return new Date(b.inspection_date) - new Date(a.inspection_date);
     });
-    // console.log(sortedData);
     setStores(groupByStore(sortedData));
   };
 
@@ -50,7 +49,6 @@ const Header = ({ search, setSearch, setStores }) => {
             placeholder="Search Restaurants..."
             value={search}
             onChange={(e) => {
-              // console.log(e.target.value);
               setSearch(e.target.value);
             }}
             className="header__search-field"
@@ -64,7 +62,9 @@ const Header = ({ search, setSearch, setStores }) => {
               </Link>
             </li>
             <li className="header__menu-item">
-              <Link className="header__menu-link">About</Link>
+              <Link className="header__menu-link" to={"/about"}>
+                About
+              </Link>
             </li>
             <li className="header__menu-item">
               <Link to={"/ratzone"} className="header__menu-link">

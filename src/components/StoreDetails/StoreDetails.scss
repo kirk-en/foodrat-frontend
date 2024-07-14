@@ -14,7 +14,7 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
   padding: 2rem 4rem 0;
   overflow: auto;
-  // opacity: 0;
+
   animation: fadeIn 0.35s forwards;
   &__header {
     display: flex;
@@ -82,7 +82,7 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -25%); /* optional: slide up effect */
+    transform: translate(-50%, -25%);
   }
   to {
     opacity: 1;

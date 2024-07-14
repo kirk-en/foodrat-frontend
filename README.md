@@ -1,4 +1,4 @@
-# Food# [FoodRat.com](https://foodrat.com/) ![foodrat mascot](https://github.com/kirk-en/foodrat-frontend/blob/develop/src/assets/concept-art/mascot-wordmark-alpha.png)
+# <a href="https://yourwebsiteurl.com" target="_blank">FoodRat</a> ![foodrat mascot](https://github.com/kirk-en/foodrat-frontend/blob/develop/src/assets/concept-art/mascot-wordmark-alpha.png)
 
 ## Overview
 
@@ -20,7 +20,7 @@ FoodRat is designed for New Yorkers and tourists who want to ensure they dine at
 
 - React
 - React Router
-- @vis.gl/react-google-maps
+- vis.gl's react-google-maps framework
 - Sass
 - Axios
 
