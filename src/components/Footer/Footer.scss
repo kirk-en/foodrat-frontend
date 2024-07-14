@@ -5,9 +5,43 @@
   @include tablet {
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: $rat-light;
     &__logo {
       width: 7rem;
+    }
+    &__error-message {
+      position: relative;
+      width: 320px;
+      padding: 10px;
+
+      background-color: #fff;
+      color: $rat-black;
+      font-size: 0.75rem;
+      border-radius: 10px;
+      border: 5px solid rgba(0, 0, 0, 0.095);
+      &:before,
+      &:after {
+        content: "\0020";
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: -20px;
+        z-index: 2;
+        width: 0;
+        height: 0;
+        border: solid 10px transparent;
+        border-left: 10px solid #fff;
+      }
+      &:before {
+        top: 50%;
+        transform: translateY(-50%);
+        right: -25px; /* Position the border behind the :after pseudo-element */
+        z-index: 1;
+        border: solid 10px transparent; /* Adjust the size of the arrow */
+        border-left: 10px solid rgba(0, 0, 0, 0.095); /* Set the left border color to match the border */
+      }
     }
   }
 }

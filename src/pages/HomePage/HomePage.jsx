@@ -25,12 +25,12 @@ const HomePage = () => {
   const [stores, setStores] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedStore, setSelectedStore] = useState();
+  const [supportedRegion, setSupportedRegion] = useState(true);
   const { storeId } = useParams();
   // ask for user location on page load
   useEffect(() => {
-    getLocation(setLocation, defaultLocation);
+    getLocation(setLocation, defaultLocation, setSupportedRegion);
   }, []);
-  // we may want to put a variable inside the dependency array that reruns the use effect when the map moves
   useEffect(() => {
     setSelectedStore(getStoreById(stores, storeId));
   }, [storeId]);
@@ -49,16 +49,10 @@ const HomePage = () => {
         </aside>
         <section className="main-container__right">
           {!location ? (
-            <p>Finding location 🌎</p>
+            <div className="main-container__loading-text">
+              <p>Loading Map + Finding location 🌎</p>
+            </div>
           ) : (
-            // 🟠 section with alert to disbale API when working with other sections
-            // <p>
-            //   <b style={{ backgroundColor: "red", fontSize: "3rem" }}>
-            //     Map API Currently Disabled 🗺
-            //   </b>
-            // </p>
-            // 🟠 Enable to call API and load map 👇
-            // Noting here that passing down the setStores state setting function could hurt reusability of <UserMap> component
             <UserMap
               location={location}
               stores={stores}
@@ -67,7 +61,7 @@ const HomePage = () => {
           )}
         </section>
       </main>
-      <Footer />
+      <Footer supportedRegion={supportedRegion} />
     </>
   );
 };
