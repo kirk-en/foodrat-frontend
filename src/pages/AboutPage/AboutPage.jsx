@@ -25,7 +25,7 @@ const AboutPage = () => {
             FoodRat as a capstone project for BrainStation’s Software
             Engineering Immersive after receiving a full scholarship to the
             program in early 2024. FoodRat leverages many of the technologies
-            I've learned including React, Node.js, Axios, and SQL.
+            I've learned including React, Node.js, Axios, and MySQL.
           </p>
 
           <p className="about__text">
