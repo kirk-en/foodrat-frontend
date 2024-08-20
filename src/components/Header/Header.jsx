@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const Header = ({ search, setSearch, setStores }) => {
   const storeSearch = async () => {
-    console.log("FoodRat Search sent to NYC OpenData:", search);
+    // console.log("FoodRat Search sent to NYC OpenData:", search);
     const { data } = await axios.get(
       `https://data.cityofnewyork.us/resource/43nn-pn8j.json?$WHERE=dba LIKE '%25${search.toUpperCase()}%25' &$$app_token=${
         import.meta.env.VITE_NYC_APP_TOKEN
@@ -18,6 +18,7 @@ const Header = ({ search, setSearch, setStores }) => {
     const sortedData = data.sort((a, b) => {
       return new Date(b.inspection_date) - new Date(a.inspection_date);
     });
+    console.log(sortedData);
     setStores(groupByStore(sortedData));
   };
 
@@ -75,11 +76,11 @@ const Header = ({ search, setSearch, setStores }) => {
               <Link className="header__menu-link">Swag Shop</Link>
             </li> */}
           </ul>
-          <img
+          {/* <img
             className="header__profile-img"
             src={profileImage}
             alt="profile image for user"
-          />
+          /> */}
         </nav>
       </div>
     </header>
