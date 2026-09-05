@@ -3,10 +3,17 @@ import foodRatLogo from "../../assets/concept-art/foodrat-mascot-alpha.png";
 import wordMark from "../../assets/foodrat-wordmark.png";
 import profileImage from "../../assets/default-profile.jpg";
 import axios from "axios";
+import { useRef } from "react";
 import { groupByStore } from "../utils/helpers";
 import { Link } from "react-router-dom";
 
 const Header = ({ search, setSearch, setStores }) => {
+  const searchInputRef = useRef(null);
+  // iOS's "Done" keyboard accessory button blurs the input without firing
+  // a form submit, so we run the search on blur too. This flag stops that
+  // from double-firing when the blur was caused by our own submit handler.
+  const skipNextBlurSearch = useRef(false);
+
   const storeSearch = async () => {
     console.log("FoodRat Search sent to NYC OpenData:", search);
     const { data } = await axios.get(
@@ -40,16 +47,27 @@ const Header = ({ search, setSearch, setStores }) => {
             console.log(e.target.search.value);
             setSearch(e.target.search.value);
             storeSearch();
+            skipNextBlurSearch.current = true;
+            searchInputRef.current?.blur();
           }}
           className="header__search"
         >
           <input
-            type="text"
+            ref={searchInputRef}
+            type="search"
+            enterKeyHint="search"
             name="search"
             placeholder="Search Restaurants..."
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
+            }}
+            onBlur={() => {
+              if (skipNextBlurSearch.current) {
+                skipNextBlurSearch.current = false;
+                return;
+              }
+              if (search.trim()) storeSearch();
             }}
             className="header__search-field"
           />

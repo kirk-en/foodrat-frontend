@@ -43,6 +43,10 @@
       // this input has no inherited font-size so it fell back to the
       // browser's smaller default control font.
       font-size: 1rem;
+      // type="search" gets its own native rounded appearance on iOS/Safari
+      // that overrides the border/border-radius above unless reset.
+      -webkit-appearance: none;
+      appearance: none;
     }
   }
   &__menu {
