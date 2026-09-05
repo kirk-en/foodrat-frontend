@@ -39,6 +39,10 @@
       border-radius: 0.5rem;
       border: solid 1px rgb(192, 192, 192);
       text-indent: 1rem;
+      // iOS Safari auto-zooms on focus for inputs rendered under 16px;
+      // this input has no inherited font-size so it fell back to the
+      // browser's smaller default control font.
+      font-size: 1rem;
     }
   }
   &__menu {
