@@ -31,23 +31,21 @@ const StoreDetails = ({ selectedStore }) => {
         className="store-details"
         onClick={(e) => e.stopPropagation()}
       >
+        <button
+          type="button"
+          className="store-details__close"
+          onClick={closeStoreDetails}
+          aria-label="Close"
+        >
+          &times;
+        </button>
         <div className="store-details__header">
           <h1 className="store-details__store-name">{selectedStore?.name}</h1>
-          <div className="store-details__header-actions">
-            <img
-              src={gradeImages[selectedStore.grade]}
-              alt={`the letter grade ${selectedStore.grade} for ${selectedStore.name}`}
-              className="store-details__grade-img"
-            />
-            <button
-              type="button"
-              className="store-details__close"
-              onClick={closeStoreDetails}
-              aria-label="Close"
-            >
-              &times;
-            </button>
-          </div>
+          <img
+            src={gradeImages[selectedStore.grade]}
+            alt={`the letter grade ${selectedStore.grade} for ${selectedStore.name}`}
+            className="store-details__grade-img"
+          />
         </div>
         <div className="store-details__violations">
           {violationsArr.map((date, index) => (
