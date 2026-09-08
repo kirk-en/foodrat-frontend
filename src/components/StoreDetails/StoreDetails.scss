@@ -1,39 +1,88 @@
 @use "../../styles/partials/variables.scss" as *;
 @use "../../styles/partials/mixins.scss" as *;
 
+.store-details-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .store-details {
-  position: absolute;
+  position: relative;
   background-color: $rat-light;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
   border-radius: 0.5rem;
   width: 90vw;
   height: 75vh;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
-  padding: 2rem 4rem 0;
-  overflow: auto;
+  padding: 1.5rem 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  @include tablet {
+    padding: 2rem 4rem 1.75rem;
+  }
 
-  animation: fadeIn 0.35s forwards;
+  animation: fadeIn 0.25s ease-out forwards;
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 10%;
+    gap: 1rem;
+    flex-shrink: 0;
+    padding-bottom: 0.5rem;
+    padding-right: 1.75rem;
+    @include tablet {
+      padding-right: 0;
+    }
+  }
+  &__store-name {
+    min-width: 0;
+    font-size: 1.15rem;
+    @include tablet {
+      font-size: 2rem;
+    }
   }
   &__grade-img {
+    flex-shrink: 0;
     width: 2rem;
     @include tablet {
       width: 6rem;
     }
   }
-  &__violations {
-    overflow-y: scroll;
-    height: 75%;
+  &__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: $rat-black;
+    z-index: 1;
     @include tablet {
-      height: 80%;
+      top: 1.25rem;
+      right: 1.5rem;
     }
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+  }
+  &__violations {
+    flex: 1;
+    min-height: 0;
+    overflow-y: scroll;
     &-date {
       font-size: 1rem;
       @include tablet {
@@ -42,7 +91,8 @@
       }
     }
     &-list {
-      padding: 0 1rem 2rem;
+      list-style-position: inside;
+      padding: 0 0.25rem 1rem;
       @include tablet {
         padding: 1rem 6rem 1rem 2rem;
       }
@@ -51,41 +101,14 @@
       }
     }
   }
-  &__bottom {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1.25rem 0 1.25rem;
-    height: 15%;
-    @include tablet {
-      height: 10%;
-    }
-  }
-  &__btn {
-    background-color: #0058a9;
-    text-decoration: none;
-    color: white;
-    border-radius: 0.5rem;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    @include tablet {
-      width: 50%;
-    }
-    &:hover {
-      background-color: #056ed1;
-    }
-  }
 }
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -25%);
+    transform: translateY(-12px);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, -50%);
+    transform: translateY(0);
   }
 }

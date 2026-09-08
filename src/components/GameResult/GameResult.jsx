@@ -32,7 +32,7 @@ const GameResult = ({ playerScore, radar }) => {
     setIsClicked(!isClicked);
   };
   return playerScore ? (
-    <article className="store-details">
+    <article className="game-result">
       <section className="results-flex">
         <div>
           <img src={gradeImages.A} className="card__grade-img" />
@@ -120,8 +120,8 @@ const GameResult = ({ playerScore, radar }) => {
         </h1>
       </section>
 
-      <div className="store-details__bottom">
-        <Link to={"/ratzone"} className="store-details__btn">
+      <div className="game-result__bottom">
+        <Link to={"/ratzone"} className="game-result__btn">
           <span>Close</span>
         </Link>
       </div>
