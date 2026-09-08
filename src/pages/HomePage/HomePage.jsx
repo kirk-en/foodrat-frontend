@@ -5,6 +5,7 @@ import StoreList from "../../components/StoreList/StoreList";
 import StoreDetails from "../../components/StoreDetails/StoreDetails";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
+import Loader from "../../components/Loader/Loader";
 import { getLocation, getStoreById } from "../../components/utils/helpers";
 
 import "./HomePage.scss";
@@ -26,6 +27,9 @@ const HomePage = () => {
   const [search, setSearch] = useState("");
   const [selectedStore, setSelectedStore] = useState();
   const [supportedRegion, setSupportedRegion] = useState(true);
+  // covers init (before the first lookup resolves), map-move-triggered
+  // refetches, and search-triggered refetches
+  const [loading, setLoading] = useState(true);
   const { storeId } = useParams();
   // ask for user location on page load
   useEffect(() => {
@@ -36,7 +40,12 @@ const HomePage = () => {
   }, [storeId]);
   return (
     <>
-      <Header search={search} setSearch={setSearch} setStores={setStores} />
+      <Header
+        search={search}
+        setSearch={setSearch}
+        setStores={setStores}
+        setLoading={setLoading}
+      />
       <main className="main-container">
         {selectedStore && (
           <StoreDetails
@@ -45,6 +54,7 @@ const HomePage = () => {
           />
         )}
         <aside className="main-container__left">
+          {loading && <Loader />}
           <StoreList stores={stores} />
         </aside>
         <section className="main-container__right">
@@ -57,6 +67,7 @@ const HomePage = () => {
               location={location}
               stores={stores}
               setStores={setStores}
+              setLoading={setLoading}
             />
           )}
         </section>

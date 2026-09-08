@@ -7,7 +7,7 @@ import { useRef } from "react";
 import { groupByStore } from "../utils/helpers";
 import { Link } from "react-router-dom";
 
-const Header = ({ search, setSearch, setStores }) => {
+const Header = ({ search, setSearch, setStores, setLoading }) => {
   const searchInputRef = useRef(null);
   // iOS's "Done" keyboard accessory button blurs the input without firing
   // a form submit, so we run the search on blur too. This flag stops that
@@ -16,17 +16,22 @@ const Header = ({ search, setSearch, setStores }) => {
 
   const storeSearch = async () => {
     // console.log("FoodRat Search sent to NYC OpenData:", search);
-    const { data } = await axios.get(
-      `https://data.cityofnewyork.us/resource/43nn-pn8j.json?$WHERE=dba LIKE '%25${search.toUpperCase()}%25' &$$app_token=${
-        import.meta.env.VITE_NYC_APP_TOKEN
-      }`
-    );
-    // Sort violations from newest to oldest
-    const sortedData = data.sort((a, b) => {
-      return new Date(b.inspection_date) - new Date(a.inspection_date);
-    });
-    console.log(sortedData);
-    setStores(groupByStore(sortedData));
+    setLoading(true);
+    try {
+      const { data } = await axios.get(
+        `https://data.cityofnewyork.us/resource/43nn-pn8j.json?$WHERE=dba LIKE '%25${search.toUpperCase()}%25' &$$app_token=${
+          import.meta.env.VITE_NYC_APP_TOKEN
+        }`
+      );
+      // Sort violations from newest to oldest
+      const sortedData = data.sort((a, b) => {
+        return new Date(b.inspection_date) - new Date(a.inspection_date);
+      });
+      console.log(sortedData);
+      setStores(groupByStore(sortedData));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
