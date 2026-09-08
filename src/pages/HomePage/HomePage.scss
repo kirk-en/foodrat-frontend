@@ -11,6 +11,7 @@
     flex-direction: row;
   }
   &__left {
+    position: relative;
     background-color: $rat-light;
     padding: 0 0.5rem;
     display: flex;

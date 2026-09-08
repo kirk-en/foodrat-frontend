@@ -17,7 +17,7 @@ import markerImageClosed from "../../assets/letter-grades/grade-closed.svg";
 import { groupByStore, debouncer } from "../utils/helpers";
 import { Link } from "react-router-dom";
 
-const UserMap = ({ location, stores, setStores }) => {
+const UserMap = ({ location, stores, setStores, setLoading }) => {
   const initBounds = {
     north: location.latitude + 0.002674456117198,
     south: location.latitude - 0.002674456117198,
@@ -42,19 +42,24 @@ const UserMap = ({ location, stores, setStores }) => {
   debouncer(
     async () => {
       console.log("GET request sent to NYC OpenData");
-      const { data } = await axios.get(
-        `https://data.cityofnewyork.us/resource/43nn-pn8j.json?$WHERE=latitude < ${
-          bounds.north
-        } AND latitude > ${bounds.south} AND longitude < ${
-          bounds.east
-        } AND longitude > ${
-          bounds.west
-        }&$ORDER=inspection_date DESC&$$app_token=${
-          import.meta.env.VITE_NYC_APP_TOKEN
-        }`
-      );
+      setLoading(true);
+      try {
+        const { data } = await axios.get(
+          `https://data.cityofnewyork.us/resource/43nn-pn8j.json?$WHERE=latitude < ${
+            bounds.north
+          } AND latitude > ${bounds.south} AND longitude < ${
+            bounds.east
+          } AND longitude > ${
+            bounds.west
+          }&$ORDER=inspection_date DESC&$$app_token=${
+            import.meta.env.VITE_NYC_APP_TOKEN
+          }`
+        );
 
-      setStores(groupByStore(data));
+        setStores(groupByStore(data));
+      } finally {
+        setLoading(false);
+      }
     },
     1000,
     [bounds]

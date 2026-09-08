@@ -1,0 +1,34 @@
+@use "../../styles/partials/variables.scss" as *;
+
+.loader {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background-color: rgba($rat-light, 0.92);
+
+  &__mascot {
+    width: 4.5rem;
+    animation: loader-bounce 1s ease-in-out infinite;
+  }
+
+  &__text {
+    color: $rat-black;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+}
+
+@keyframes loader-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-0.6rem) scale(1.08);
+  }
+}
