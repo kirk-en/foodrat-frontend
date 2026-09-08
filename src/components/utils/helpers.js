@@ -5,13 +5,13 @@ import { useEffect, useRef } from "react";
 export const groupByStore = (arr) => {
   const outputObj = {};
   arr.forEach((entry) => {
-    outputObj[entry.dba]
-      ? outputObj[entry.dba].push(entry)
-      : (outputObj[entry.dba] = [entry]);
+    outputObj[entry.camis]
+      ? outputObj[entry.camis].push(entry)
+      : (outputObj[entry.camis] = [entry]);
   });
 
   const outputArr = Object.keys(outputObj).map((key) => ({
-    name: key,
+    name: outputObj[key][0]?.dba,
     coords: {
       latitude: outputObj[key][0]?.latitude,
       longitude: outputObj[key][0]?.longitude,
