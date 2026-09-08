@@ -91,7 +91,8 @@
       }
     }
     &-list {
-      padding: 0 1rem 2rem;
+      list-style-position: inside;
+      padding: 0 0.25rem 1rem;
       @include tablet {
         padding: 1rem 6rem 1rem 2rem;
       }
